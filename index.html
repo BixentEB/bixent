@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Codex Mental — l'univers numérique de Vincero</title>
+<meta name="description" content="Écriture, exploration et création numérique : le portail de Codex Mental, du Laboratoire et de l'Observatoire.">
+<meta name="theme-color" content="#06041a">
+<link rel="canonical" href="https://vincero.codexmental.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vincero.codexmental.com/">
+<meta property="og:title" content="Codex Mental — l'univers numérique de Vincero">
+<meta property="og:description" content="Écriture, exploration et création numérique : Codex Mental, le Laboratoire et l'Observatoire.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/Syne.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main class="wrap">
+<div class="grid" id="grid">
+
+  <!-- EN-TÊTE -->
+  <section class="card hero a-hero">
+    <svg class="atom" aria-hidden="true" viewBox="-200 -200 400 400">
+      <defs>
+        <radialGradient id="nuc"><stop offset="0%" stop-color="#fff"/><stop offset="35%" stop-color="#ffb4dc"/><stop offset="100%" stop-color="#ff7fbf" stop-opacity="0"/></radialGradient>
+        <radialGradient id="halo"><stop offset="0%" stop-color="#7a4dff" stop-opacity=".32"/><stop offset="100%" stop-color="#7a4dff" stop-opacity="0"/></radialGradient>
+      </defs>
+      <circle r="190" fill="url(#halo)"/>
+      <g transform="rotate(-58)"><ellipse rx="165" ry="54" fill="none" stroke="#8ff6ff" stroke-opacity=".38" stroke-width="1.2"/><g><animateMotion dur="14s" repeatCount="indefinite" path="M-165 0A165 54 0 1 1 165 0A165 54 0 1 1-165 0"/><circle r="12" fill="#8ff6ff" fill-opacity=".18"/><circle r="5" fill="#8ff6ff"/></g></g>
+      <g transform="rotate(2)"><ellipse rx="165" ry="54" fill="none" stroke="#c9a4ff" stroke-opacity=".38" stroke-width="1.2"/><g><animateMotion dur="19s" repeatCount="indefinite" begin="-6s" path="M-165 0A165 54 0 1 1 165 0A165 54 0 1 1-165 0"/><circle r="12" fill="#c9a4ff" fill-opacity=".18"/><circle r="5" fill="#c9a4ff"/></g></g>
+      <g transform="rotate(62)"><ellipse rx="165" ry="54" fill="none" stroke="#ffb27a" stroke-opacity=".38" stroke-width="1.2"/><g><animateMotion dur="24s" repeatCount="indefinite" begin="-15s" path="M-165 0A165 54 0 1 1 165 0A165 54 0 1 1-165 0"/><circle r="12" fill="#ffb27a" fill-opacity=".18"/><circle r="5" fill="#ffb27a"/></g></g>
+      <circle r="30" fill="url(#nuc)"/>
+    </svg>
+    <div class="hero-in">
+      <span class="eyebrow">Portail · Écriture · Exploration · Création</span>
+      <h1 class="title">CODEX MENTAL</h1>
+      <p class="subtitle">L'univers numérique de Vincero</p>
+      <div class="bio">
+        <p class="bio-head">Un esprit curieux, des horizons multiples.</p>
+        <p>J'aime questionner ce qui nous entoure, explorer ce que nous comprenons encore mal et donner forme aux idées qui traversent mon esprit.</p>
+        <p id="bio-more" hidden>Entre écriture, sciences, psychologie, technologies et créations numériques, chaque question peut devenir une réflexion, chaque idée un projet, et chaque exploration une nouvelle découverte.</p>
+        <div class="bio-foot">
+          <span class="sign">— Vincero</span>
+          <button type="button" class="link-btn" id="bio-btn" aria-expanded="false" aria-controls="bio-more">En savoir plus</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AFFICHES -->
+  <section class="card poster a-poster" id="posters" aria-roledescription="carrousel" aria-label="Affiches">
+    <div class="poster-stage" id="poster-stage"></div>
+    <div class="poster-bar">
+      <span class="mono small" id="poster-status">Affiches</span>
+      <div class="poster-nav">
+        <button type="button" class="icon-btn" id="poster-prev" aria-label="Affiche précédente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button type="button" class="icon-btn" id="poster-next" aria-label="Affiche suivante"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CODEX -->
+  <a class="card uni a-cx" href="https://codexmental.com" style="--c:#8ff6ff">
+    <svg class="uni-art" aria-hidden="true" viewBox="0 0 110 80" style="width:110px;height:80px;right:18px;top:22px">
+      <rect x="0" y="4" width="92" height="5" rx="2.5" fill="#8ff6ff" fill-opacity=".35"/>
+      <rect x="0" y="18" width="74" height="5" rx="2.5" fill="#8ff6ff" fill-opacity=".25"/>
+      <rect x="0" y="32" width="100" height="5" rx="2.5" fill="#8ff6ff" fill-opacity=".25"/>
+      <rect x="0" y="46" width="58" height="5" rx="2.5" fill="#8ff6ff" fill-opacity=".2"/>
+      <rect class="blink" x="63" y="43" width="3" height="11" fill="#8ff6ff"/>
+    </svg>
+    <span class="tile"><small>01</small><b>Cx</b></span>
+    <span class="uni-text">
+      <span class="uni-name">Codex Mental</span>
+      <span class="uni-desc">Écriture, réflexions et introspection.</span>
+      <span class="uni-url">codexmental.com →</span>
+    </span>
+  </a>
+
+  <!-- LABO -->
+  <a class="card uni uni-lab a-lb" href="https://lab.codexmental.com" style="--c:#c9a4ff">
+    <svg class="uni-art" aria-hidden="true" viewBox="0 0 80 90" style="width:72px;height:82px;right:26px;top:14px">
+      <circle class="bub" cx="36" cy="40" r="3" fill="none" stroke="#c9a4ff" stroke-width="1.2"/>
+      <circle class="bub b2" cx="46" cy="44" r="2" fill="none" stroke="#c9a4ff" stroke-width="1.2"/>
+      <circle class="bub b3" cx="40" cy="42" r="2.5" fill="none" stroke="#c9a4ff" stroke-width="1.2"/>
+      <path d="M32 46L32 62 18 84 62 84 48 62 48 46" fill="none" stroke="#c9a4ff" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M28 46H52" stroke="#c9a4ff" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M24 76H56L62 84H18Z" fill="#c9a4ff" fill-opacity=".35"/>
+    </svg>
+    <span class="tile"><small>02</small><b>Lb</b></span>
+    <span class="uni-text">
+      <span class="uni-name">Le Laboratoire</span>
+      <span class="uni-desc">Applications, prototypes et expérimentations.</span>
+      <span class="uni-url">lab.codexmental.com →</span>
+    </span>
+  </a>
+
+  <!-- OBSERVATOIRE -->
+  <a class="card uni a-ob" href="https://obs.codexmental.com" style="--c:#ffb27a">
+    <svg class="uni-art" aria-hidden="true" viewBox="0 0 120 90" style="width:120px;height:90px;right:10px;top:10px">
+      <circle cx="10" cy="14" r="1" fill="#fff"/><circle cx="40" cy="80" r="1.2" fill="#fff" fill-opacity=".7"/><circle cx="112" cy="70" r="1" fill="#fff"/><circle cx="96" cy="8" r="1.3" fill="#ffd27a"/>
+      <g transform="translate(70 44)">
+        <ellipse rx="34" ry="10" fill="none" stroke="#ffb27a" stroke-opacity=".35" transform="rotate(-18)"/>
+        <circle r="15" fill="#ffb27a" fill-opacity=".85"/>
+        <path d="M-15 0A15 15 0 0 0 15 0" fill="#8a3f1e" fill-opacity=".35"/>
+        <path d="M-32 6A34 10 0 0 0 32-6" transform="rotate(-18) translate(0 4)" fill="none" stroke="#ffd27a" stroke-width="2" stroke-opacity=".8"/>
+        <g><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="16s" repeatCount="indefinite"/><circle cx="26" cy="-18" r="3" fill="#e9e6ff"/></g>
+      </g>
+    </svg>
+    <span class="tile"><small>03</small><b>Ob</b></span>
+    <span class="uni-text">
+      <span class="uni-name">L'Observatoire</span>
+      <span class="uni-desc">Astronomie, simulations et immersion.</span>
+      <span class="uni-url">obs.codexmental.com →</span>
+    </span>
+  </a>
+
+  <!-- MES CRÉATIONS -->
+  <section class="card stats a-stats" id="stats" data-feature="stats">
+    <span class="label">Mes créations</span>
+    <div class="stat-row" id="stat-row">
+      <div class="stat" data-key="articles"><b style="color:#8ff6ff">22</b><span>articles publiés</span></div>
+      <div class="stat" data-key="ideas"><b style="color:#c9a4ff">8</b><span>idées et hypothèses</span></div>
+    </div>
+    <span class="src mono small muted">Chiffres relevés en direct sur Codex Mental et l'Observatoire</span>
+  </section>
+
+  <!-- NOX -->
+  <section class="card nox a-nox" id="nox" data-feature="nox">
+    <span class="label" style="color:#8fb8ff">Nox</span>
+    <button type="button" class="nox-btn" id="nox-btn" aria-label="Réveiller Nox">
+      <img id="nox-img" class="breathe" src="img/nox/nox_sleep.png" alt="" width="128" height="128">
+    </button>
+    <p class="nox-title" id="nox-title">Nox est en veille</p>
+    <p class="nox-line" id="nox-line" aria-live="polite">Nox dort paisiblement. Merci de ne pas déranger.</p>
+  </section>
+
+  <!-- EXPÉRIENCE : BOÎTE DE SCHRÖDINGER -->
+  <section class="card box a-box" id="box" data-feature="experience">
+    <span class="label" style="color:#9dff8a">|ψ⟩ Expérience n°1</span>
+    <svg class="box-art" id="box-art" aria-hidden="true" viewBox="0 0 180 140">
+      <g class="box-inside">
+        <path d="M54 58L74 46H164L144 58Z" transform="rotate(-38 74 46)" fill="#1f1650" stroke="#9dff8a" stroke-opacity=".7" stroke-width="1.4"/>
+        <g class="supA" transform="translate(-5 0)">
+          <path d="M76 108C70 84 76 70 92 70S114 84 108 108Z" fill="#162a3a" stroke="#8ff6ff" stroke-width="1.4"/>
+          <path d="M78 56L76 38 88 50M106 56L108 38 96 50" fill="#162a3a" stroke="#8ff6ff" stroke-width="1.4" stroke-linejoin="round"/>
+          <circle cx="92" cy="60" r="16" fill="#162a3a" stroke="#8ff6ff" stroke-width="1.4"/>
+          <circle cx="86" cy="59" r="3" fill="#8ff6ff"/><circle cx="98" cy="59" r="3" fill="#8ff6ff"/>
+          <path d="M89 66Q92 69 95 66" fill="none" stroke="#8ff6ff" stroke-width="1.3"/>
+        </g>
+        <g class="supB" transform="translate(6 2)">
+          <path d="M76 108C70 84 76 70 92 70S114 84 108 108Z" fill="#2a1f5c" stroke="#c9a4ff" stroke-width="1.4"/>
+          <path d="M78 56L76 38 88 50M106 56L108 38 96 50" fill="#2a1f5c" stroke="#c9a4ff" stroke-width="1.4" stroke-linejoin="round"/>
+          <circle cx="92" cy="60" r="16" fill="#2a1f5c" stroke="#c9a4ff" stroke-width="1.4"/>
+          <path d="M83 59Q86 62 89 59M95 59Q98 62 101 59" fill="none" stroke="#c9a4ff" stroke-width="1.4"/>
+          <text x="114" y="44" font-family="Syne, sans-serif" font-weight="700" font-size="12" fill="#c9a4ff">z</text>
+        </g>
+      </g>
+      <path d="M144 70L164 58V118L144 130Z" fill="#150f3a" stroke="#9dff8a" stroke-opacity=".6" stroke-width="1.4"/>
+      <rect x="44" y="70" width="100" height="60" fill="#1a1245" stroke="#9dff8a" stroke-opacity=".7" stroke-width="1.4"/>
+      <path class="box-lid" d="M44 70L64 58H164L144 70Z" fill="#1f1650" stroke="#9dff8a" stroke-opacity=".7" stroke-width="1.4"/>
+      <text x="94" y="106" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="2" fill="#9dff8a" fill-opacity=".8">FRAGILE</text>
+    </svg>
+    <p class="box-line" id="box-line" aria-live="polite">Un chat est enfermé là-dedans. Dans quel état ? Personne ne le sait.</p>
+    <button type="button" class="pill pill-green" id="box-btn">Ouvrir la boîte</button>
+  </section>
+
+  <!-- NOUVEAUTÉ -->
+  <section class="card news a-news" id="news" data-feature="news">
+    <span class="label">Nouveauté <span class="badge" id="news-badge" hidden>NEW</span></span>
+    <p class="news-title" id="news-title">Ouverture du portail</p>
+    <span class="mono small muted" id="news-meta">Portail · 5 nov. 2026</span>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="card contact a-contact">
+    <span class="label">Contact</span>
+    <p>Une idée, une question, un projet ?</p>
+    <a class="pill pill-gold" id="mail-btn" href="mailto:contact@codexmental.com">M'écrire</a>
+  </section>
+
+  <!-- ATELIER D'ÉCRITURE (masqué tant que features.atelier = false) -->
+  <section class="card atelier a-write" id="atelier" data-feature="atelier" hidden>
+    <span class="label" style="color:#ffb4dc">Dans l'atelier d'écriture</span>
+    <div class="covers" id="covers"></div>
+  </section>
+
+  <!-- BANDE : RÉSEAUX + PARTAGE -->
+  <section class="card band a-band">
+    <div class="band-col">
+      <span class="label">Me retrouver</span>
+      <div class="socials" id="socials"></div>
+    </div>
+    <div class="share">
+      <img src="img/qr-vincero.svg" alt="QR code vers vincero.codexmental.com" width="96" height="96" class="qr">
+      <div class="share-txt">
+        <span class="label">Partager le portail</span>
+        <span class="mono small muted">vincero.codexmental.com</span>
+        <div class="share-btns">
+          <button type="button" class="pill pill-ghost" id="share-btn">Partager</button>
+          <a class="pill pill-ghost" href="img/qr-vincero.svg" download="qr-vincero.svg">QR code</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+<footer class="foot"><span>vincero.codexmental.com</span><span>Codex Mental · Vincero</span></footer>
+</main>
+
+<dialog class="gallery" id="gallery" aria-label="Atelier d'écriture"></dialog>
+
+<script src="js/app.js" defer></script>
+</body>
+</html>

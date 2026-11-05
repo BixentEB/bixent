@@ -1,0 +1,29 @@
+{
+  "_aide": "Réglages généraux du portail. features : true = bloc affiché, false = bloc masqué (rien n'est chargé). news.newUntil : la pastille NEW disparaît après cette date (AAAA-MM-JJ).",
+  "features": {
+    "atelier": false,
+    "stats": true,
+    "nox": true,
+    "experience": true,
+    "news": true
+  },
+  "contact": {
+    "email": "contact@codexmental.com",
+    "label": "M'écrire"
+  },
+  "news": {
+    "title": "Ouverture du portail",
+    "site": "Portail",
+    "date": "2026-11-05",
+    "newUntil": "2026-11-19",
+    "url": ""
+  },
+  "share": {
+    "url": "https://vincero.codexmental.com",
+    "title": "Codex Mental — l'univers numérique de Vincero"
+  },
+  "sources": {
+    "codexCatalog": "https://codexmental.com/content/catalog.json",
+    "obsHypotheses": "https://obs.codexmental.com/hypotheses/index.json"
+  }
+}

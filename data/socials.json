@@ -1,0 +1,7 @@
+{
+  "_aide": "Réseaux affichés dans la bande du bas. Une entrée sans url n'est pas affichée. icon : github, linkedin, instagram, youtube, mastodon, bluesky, x.",
+  "socials": [
+    { "name": "GitHub", "url": "https://github.com/BixentEB", "icon": "github" },
+    { "name": "LinkedIn", "url": "", "icon": "linkedin" }
+  ]
+}

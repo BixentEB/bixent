@@ -1,0 +1,4 @@
+{
+  "_aide": "Atelier d'écriture (affiché seulement si features.atelier vaut true dans config.json). Ne mettre ici QUE ce qui peut être public : titre, genre, statut, une phrase d'ambiance. Jamais de manuscrit, de plan ni de note. status : idee, preparation, ecriture, revision, termine. cover : image facultative (2:3).",
+  "works": []
+}

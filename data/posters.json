@@ -1,0 +1,11 @@
+{
+  "_aide": "Affiches de la galerie. image : chemin depuis la racine (format portrait 2:3 conseillé, en .webp). quote / fr / author servent au texte alternatif et à l'accessibilité. Ordre de départ aléatoire, rotation toutes les 'interval' secondes.",
+  "interval": 25,
+  "pauseAfterClick": 60,
+  "posters": [
+    { "image": "img/affiches/dare-to-dream.webp", "quote": "Dare to dream", "fr": "Ose rêver", "author": "" },
+    { "image": "img/affiches/think-outside-the-box.webp", "quote": "Think outside the box", "fr": "Pense en dehors du cadre", "author": "" },
+    { "image": "img/affiches/stay-curious.webp", "quote": "Stay curious", "fr": "Reste curieux", "author": "" },
+    { "image": "img/affiches/star-stuff.webp", "quote": "We are made of star stuff", "fr": "Nous sommes faits de poussière d'étoiles", "author": "Carl Sagan" }
+  ]
+}
