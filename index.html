@@ -29,30 +29,31 @@
       <h1 class="title">CODEX MENTAL</h1>
       <p class="subtitle">L'univers numérique de Bixent</p>
       <div class="bio">
-        <p class="bio-head">Un esprit curieux, des horizons multiples.</p>
-        <p>J'aime questionner ce qui nous entoure, explorer ce que nous comprenons encore mal et donner forme aux idées qui traversent mon esprit.</p>
-        <p id="bio-more" hidden>Entre écriture, sciences, psychologie, technologies et créations numériques, chaque question peut devenir une réflexion, chaque idée un projet, et chaque exploration une nouvelle découverte.</p>
-        <div class="bio-foot">
-          <span class="sign">— Bixent</span>
+        <div class="bio-row">
+          <p class="bio-head">Un esprit curieux, des horizons multiples.</p>
           <button type="button" class="link-btn" id="bio-btn" aria-expanded="false" aria-controls="bio-more">En savoir plus</button>
+        </div>
+        <div id="bio-more" class="bio-more" hidden>
+          <p>J'aime questionner ce qui nous entoure, explorer ce que nous comprenons encore mal et donner forme aux idées qui traversent mon esprit.</p>
+          <p>Entre écriture, sciences, psychologie, technologies et créations numériques, chaque question peut devenir une réflexion, chaque idée un projet, et chaque exploration une nouvelle découverte.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- AFFICHES -->
+  <!-- AFFICHES : pièce maîtresse -->
   <section class="card poster a-poster" id="posters" aria-roledescription="carrousel" aria-label="Affiches">
     <div class="poster-stage" id="poster-stage"></div>
     <div class="poster-bar">
       <span class="poster-status" id="poster-status"></span>
       <div class="poster-nav">
-        <button type="button" class="icon-btn" id="poster-prev" aria-label="Affiche précédente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
-        <button type="button" class="icon-btn" id="poster-next" aria-label="Affiche suivante"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+        <button type="button" class="icon-btn round" id="poster-prev" aria-label="Affiche précédente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button type="button" class="icon-btn round" id="poster-next" aria-label="Affiche suivante"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
       </div>
     </div>
   </section>
 
-  <!-- CODEX -->
+  <!-- TROIS UNIVERS -->
   <a class="card uni a-cx" href="https://codexmental.com" style="--c:#8ff6ff">
     <svg class="uni-art" aria-hidden="true" viewBox="0 0 96 72">
       <g transform="rotate(-6 48 36)">
@@ -65,15 +66,14 @@
         <rect class="blink" x="52" y="50.5" width="2.2" height="8" fill="#8ff6ff"/>
       </g>
     </svg>
-    <span class="tile"><small>01</small><b>Cx</b></span>
+    <span class="tile">Cx</span>
     <span class="uni-text">
       <span class="uni-name">Codex Mental</span>
-      <span class="uni-desc">Écriture, réflexions et introspection.</span>
-      <span class="uni-url">codexmental.com →</span>
+      <span class="uni-desc">Écriture &amp; introspection</span>
     </span>
+    <span class="go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></span>
   </a>
 
-  <!-- LABO -->
   <a class="card uni uni-lab a-lb" href="https://lab.codexmental.com" style="--c:#c9a4ff">
     <svg class="uni-art" aria-hidden="true" viewBox="0 0 96 72">
       <g stroke="#c9a4ff" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -88,15 +88,14 @@
       <circle class="bub b2" cx="67" cy="50" r="1.7" fill="none" stroke="#c9a4ff" stroke-width="1.2"/>
       <circle class="bub b3" cx="64" cy="49" r="2" fill="none" stroke="#c9a4ff" stroke-width="1.2"/>
     </svg>
-    <span class="tile"><small>02</small><b>Lb</b></span>
+    <span class="tile">Lb</span>
     <span class="uni-text">
-      <span class="uni-name">Le Laboratoire</span>
-      <span class="uni-desc">Applications, prototypes, expériences.</span>
-      <span class="uni-url">lab.codexmental.com →</span>
+      <span class="uni-name">Laboratoire</span>
+      <span class="uni-desc">Prototypes &amp; expériences</span>
     </span>
+    <span class="go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></span>
   </a>
 
-  <!-- OBSERVATOIRE -->
   <a class="card uni a-ob" href="https://obs.codexmental.com" style="--c:#ffb27a">
     <svg class="uni-art" aria-hidden="true" viewBox="0 0 120 90">
       <circle cx="10" cy="14" r="1" fill="#fff"/><circle cx="40" cy="80" r="1.2" fill="#fff" fill-opacity=".7"/><circle cx="112" cy="70" r="1" fill="#fff"/><circle cx="96" cy="8" r="1.3" fill="#ffd27a"/>
@@ -108,49 +107,67 @@
         <g><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="16s" repeatCount="indefinite"/><circle cx="26" cy="-18" r="3" fill="#e9e6ff"/></g>
       </g>
     </svg>
-    <span class="tile"><small>03</small><b>Ob</b></span>
+    <span class="tile">Ob</span>
     <span class="uni-text">
-      <span class="uni-name">L'Observatoire</span>
-      <span class="uni-desc">Astronomie, simulations et immersion.</span>
-      <span class="uni-url">obs.codexmental.com →</span>
+      <span class="uni-name">Observatoire</span>
+      <span class="uni-desc">Astronomie &amp; simulations</span>
     </span>
+    <span class="go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></span>
   </a>
 
-  <!-- MES CRÉATIONS -->
-  <section class="card stats a-stats" id="stats" data-feature="stats">
-    <span class="label">Mes créations</span>
-    <div class="stat-row" id="stat-row">
-      <div class="stat"><b style="color:#8ff6ff">22</b><span>articles publiés</span></div>
-      <div class="stat"><b style="color:#c9a4ff">8</b><span>idées et hypothèses</span></div>
-    </div>
-    <span class="src mono small muted">Relevés en direct</span>
+  <!-- COMPTEURS -->
+  <section class="card count a-ar" data-feature="stats" style="--c:#8ff6ff">
+    <svg class="count-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 11h6M9 14.5h6M9 18h4"/></svg>
+    <div class="count-txt"><b id="n-articles">22</b><span>Articles</span></div>
+  </section>
+  <section class="card count a-hy" data-feature="stats" style="--c:#ffd27a">
+    <svg class="count-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg>
+    <div class="count-txt"><b id="n-ideas">08</b><span>Hypothèses</span></div>
   </section>
 
-  <!-- NOUVEAUTÉ -->
-  <section class="card news a-news" id="news" data-feature="news">
-    <span class="label">Nouveauté <span class="badge" id="news-badge" hidden>NEW</span></span>
-    <p class="news-title" id="news-title">Ouverture du portail</p>
-    <span class="mono small muted" id="news-meta">Portail · 5 nov. 2026</span>
+  <!-- CÔTÉ GAMER -->
+  <section class="card gamer a-gm" id="gamer" hidden>
+    <div class="gamer-head">
+      <svg class="gamer-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="15.5" cy="11.5" r=".9"/><circle cx="17.8" cy="13.6" r=".9"/></svg>
+      <span class="gamer-title">Côté <br>gamer</span>
+    </div>
+    <ul class="thumbs" id="thumbs" aria-live="polite"></ul>
+    <button type="button" class="icon-btn round small-btn" id="games-next" aria-label="Autres jeux" data-tip="Autres jeux"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
   </section>
 
   <!-- NOX -->
-  <section class="card nox a-nox" id="nox" data-feature="nox">
-    <span class="label" style="color:#8fb8ff">Nox</span>
-    <div class="mini">
-      <button type="button" class="nox-btn" id="nox-btn" aria-label="Réveiller Nox">
-        <img id="nox-img" class="breathe" src="img/nox/nox_sleep.png" alt="" width="128" height="128">
-      </button>
-      <div class="mini-txt">
-        <p class="nox-title" id="nox-title">Nox est en veille</p>
-        <p class="nox-line" id="nox-line" aria-live="polite">Nox dort paisiblement. Merci de ne pas déranger.</p>
-      </div>
+  <section class="card nox a-nx" id="nox" data-feature="nox">
+    <button type="button" class="nox-btn" id="nox-btn" aria-label="Réveiller Nox" data-tip="Réveiller Nox">
+      <img id="nox-img" class="breathe" src="img/nox/nox_sleep.png" alt="" width="128" height="128">
+    </button>
+    <div class="mini-txt">
+      <p class="nox-name">Nox</p>
+      <p class="nox-state"><span class="dot" id="nox-dot"></span><span id="nox-title">En veille…</span></p>
+      <p class="nox-line" id="nox-line" aria-live="polite"></p>
     </div>
   </section>
 
-  <!-- EXPÉRIENCE : BOÎTE DE SCHRÖDINGER -->
-  <section class="card box a-box" id="box" data-feature="experience">
-    <span class="label" style="color:#9dff8a">|ψ⟩ Expérience n°1</span>
-    <div class="mini">
+  <!-- NOUVEAUTÉ -->
+  <section class="card news a-nw" id="news" data-feature="news">
+    <svg class="news-art" viewBox="0 0 120 80" aria-hidden="true">
+      <path d="M0 80C30 62 70 58 120 66V80Z" fill="#6aa8ff" fill-opacity=".12"/>
+      <path d="M0 80C30 66 70 62 120 70" fill="none" stroke="#8ff6ff" stroke-opacity=".35"/>
+      <g class="rocket" transform="translate(84 30) rotate(40)">
+        <path d="M0-16C5-10 6-2 5 8H-5C-6-2-5-10 0-16Z" fill="#e9e6ff" fill-opacity=".9"/>
+        <circle cy="-4" r="2.6" fill="#8ff6ff"/>
+        <path d="M-5 4L-9 11-4 9M5 4L9 11 4 9" fill="#c9a4ff"/>
+        <path d="M-3 9Q0 20 3 9Z" fill="#ffb27a"/>
+      </g>
+      <path d="M40 58L72 40" stroke="#c9a4ff" stroke-opacity=".35" stroke-dasharray="2 4"/>
+    </svg>
+    <span class="badge" id="news-badge" hidden>NEW</span>
+    <p class="news-title" id="news-title">Portail en ligne</p>
+    <span class="news-meta" id="news-meta"></span>
+  </section>
+
+  <!-- EXPÉRIENCE -->
+  <section class="card box a-ex" id="box" data-feature="experience">
+    <button type="button" class="box-btn" id="box-btn" aria-label="Ouvrir la boîte" data-tip="Ouvrir la boîte">
       <svg class="box-art" aria-hidden="true" viewBox="34 20 140 116">
         <g class="box-inside">
           <path d="M54 58L74 46H164L144 58Z" transform="rotate(-38 74 46)" fill="#1f1650" stroke="#9dff8a" stroke-opacity=".7" stroke-width="1.4"/>
@@ -173,56 +190,44 @@
         <path class="box-lid" d="M44 70L64 58H164L144 70Z" fill="#1f1650" stroke="#9dff8a" stroke-opacity=".7" stroke-width="1.4"/>
         <text x="94" y="106" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="2" fill="#9dff8a" fill-opacity=".8">FRAGILE</text>
       </svg>
-      <div class="mini-txt">
-        <p class="box-line" id="box-line" aria-live="polite">Un chat dort là-dedans. Ou pas.</p>
-        <button type="button" class="pill pill-green" id="box-btn">Ouvrir</button>
-      </div>
+    </button>
+    <div class="mini-txt">
+      <p class="box-kicker">|ψ⟩ Expérience</p>
+      <p class="box-line" id="box-line" aria-live="polite">Un chat dort là-dedans. Ou pas.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT ET PARTAGE -->
+  <section class="card contact a-ct" aria-label="Contact et partage">
+    <button type="button" class="qr-btn" id="qr-btn" aria-label="Agrandir le QR code" data-tip="Agrandir">
+      <img src="img/qr-bixent.svg" alt="QR code vers le portail" width="84" height="84">
+    </button>
+    <div class="ctl" id="socials">
+      <button type="button" class="icon-btn" id="share-btn" aria-label="Partager le portail" data-tip="Partager"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg></button>
+      <a class="icon-btn icon-mail" id="mail-btn" href="mailto:contact@codexmental.com" aria-label="M'écrire" data-tip="M'écrire"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></svg></a>
     </div>
   </section>
 
   <!-- ATELIER D'ÉCRITURE (masqué tant que features.atelier = false) -->
-  <section class="card atelier a-write" id="atelier" data-feature="atelier" hidden>
+  <section class="card atelier a-wr" id="atelier" data-feature="atelier" hidden>
     <span class="label" style="color:#ffb4dc">Dans l'atelier d'écriture</span>
     <div class="covers" id="covers"></div>
   </section>
 
-  <!-- BANDE : CONTACT, RÉSEAUX, PARTAGE -->
-  <section class="card band a-band">
-    <div class="band-col">
-      <span class="label">Contact et réseaux</span>
-      <div class="socials" id="socials">
-        <a class="social social-mail" id="mail-btn" href="mailto:contact@codexmental.com" aria-label="M'écrire" title="M'écrire">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></svg>
-          <span>M'écrire</span>
-        </a>
-      </div>
-    </div>
-    <button type="button" class="game" id="game" hidden aria-live="polite" aria-label="Côté joueur : jeu suivant">
-      <span class="game-ico" id="game-ico" aria-hidden="true"></span>
-      <span class="game-txt">
-        <span class="label">Côté joueur</span>
-        <span class="game-name" id="game-name"></span>
-        <span class="game-genre" id="game-genre"></span>
-      </span>
-    </button>
-    <div class="share">
-      <img src="img/qr-bixent.svg" alt="QR code vers bixent.codexmental.com" width="72" height="72" class="qr">
-      <div class="share-txt">
-        <span class="label">Partager</span>
-        <span class="mono small muted">bixent.codexmental.com</span>
-        <div class="share-btns">
-          <button type="button" class="pill pill-ghost" id="share-btn">Partager</button>
-          <a class="pill pill-ghost" href="img/qr-bixent.svg" download="qr-bixent.svg">QR code</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
 </div>
-<footer class="foot"><span>bixent.codexmental.com</span><span>Codex Mental · Bixent</span></footer>
+<footer class="foot"><span>Codex Mental · Bixent</span></footer>
 </main>
 
-<dialog class="gallery" id="gallery" aria-label="Atelier d'écriture"></dialog>
+<dialog class="modal" id="qr-modal" aria-label="QR code du portail">
+  <img src="img/qr-bixent.svg" alt="QR code vers bixent.codexmental.com" width="260" height="260">
+  <p class="mono small muted">bixent.codexmental.com</p>
+  <div class="modal-btns">
+    <a class="pill pill-ghost" href="img/qr-bixent.svg" download="qr-bixent.svg">Télécharger</a>
+    <button type="button" class="pill pill-ghost" id="qr-close">Fermer</button>
+  </div>
+</dialog>
+<dialog class="modal gallery" id="gallery" aria-label="Atelier d'écriture"></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="js/atom.js" defer></script>
 <script src="js/app.js" defer></script>
