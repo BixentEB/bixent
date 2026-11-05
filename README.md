@@ -35,3 +35,12 @@ img/nox/          visuels de Nox
 img/qr-bixent.svg  QR code vers ce portail
 fonts/            polices auto-hébergées (licence OFL)
 ```
+
+## Ajouter un bloc
+
+La mosaïque fait 12 colonnes et place les blocs toute seule, dans l'ordre du HTML. Pour en ajouter un, insère une `<section class="card s-4">…</section>` à l'endroit voulu :
+
+- largeur : `s-2`, `s-3`, `s-4`, `s-5`, `s-6`, `s-8` ou `s-12` (en colonnes) ;
+- hauteur double : ajoute `r-2`.
+
+Sur tablette, les blocs passent sur 6 colonnes ; sur mobile, ils s'empilent automatiquement.

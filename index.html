@@ -129,10 +129,26 @@
   <section class="card gamer a-gm" id="gamer" hidden>
     <div class="gamer-head">
       <svg class="gamer-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="15.5" cy="11.5" r=".9"/><circle cx="17.8" cy="13.6" r=".9"/></svg>
-      <span class="gamer-title">Côté <br>gamer</span>
+      <span class="gamer-title">Côté gamer</span>
+      <button type="button" class="icon-btn round small-btn" id="games-next" aria-label="Autres jeux" data-tip="Autres jeux"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
     </div>
     <ul class="thumbs" id="thumbs" aria-live="polite"></ul>
-    <button type="button" class="icon-btn round small-btn" id="games-next" aria-label="Autres jeux" data-tip="Autres jeux"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+  </section>
+
+  <!-- CONTACT, PARTAGE, RÉSEAUX -->
+  <section class="card contact a-ct" aria-label="Contact et partage">
+    <div class="ct-top">
+      <button type="button" class="qr-btn" id="qr-btn" aria-label="Agrandir le QR code" data-tip="Agrandir">
+        <img src="img/qr-bixent.svg" alt="QR code vers le portail" width="88" height="88">
+      </button>
+      <div class="ct-actions">
+        <a class="icon-btn icon-mail" id="mail-btn" href="mailto:contact@codexmental.com" aria-label="M'écrire" data-tip="M'écrire"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></svg></a>
+        <button type="button" class="icon-btn" id="share-btn" aria-label="Partager le portail" data-tip="Partager"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg></button>
+      </div>
+    </div>
+    <div class="ct-socials" id="socials">
+      <button type="button" class="icon-btn icon-more" id="socials-more" aria-label="Tous mes réseaux" data-tip="Tous mes réseaux" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+    </div>
   </section>
 
   <!-- NOX -->
@@ -197,17 +213,6 @@
     </div>
   </section>
 
-  <!-- CONTACT ET PARTAGE -->
-  <section class="card contact a-ct" aria-label="Contact et partage">
-    <button type="button" class="qr-btn" id="qr-btn" aria-label="Agrandir le QR code" data-tip="Agrandir">
-      <img src="img/qr-bixent.svg" alt="QR code vers le portail" width="84" height="84">
-    </button>
-    <div class="ctl" id="socials">
-      <button type="button" class="icon-btn" id="share-btn" aria-label="Partager le portail" data-tip="Partager"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg></button>
-      <a class="icon-btn icon-mail" id="mail-btn" href="mailto:contact@codexmental.com" aria-label="M'écrire" data-tip="M'écrire"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></svg></a>
-    </div>
-  </section>
-
   <!-- ATELIER D'ÉCRITURE (masqué tant que features.atelier = false) -->
   <section class="card atelier a-wr" id="atelier" data-feature="atelier" hidden>
     <span class="label" style="color:#ffb4dc">Dans l'atelier d'écriture</span>
@@ -225,6 +230,10 @@
     <a class="pill pill-ghost" href="img/qr-bixent.svg" download="qr-bixent.svg">Télécharger</a>
     <button type="button" class="pill pill-ghost" id="qr-close">Fermer</button>
   </div>
+</dialog>
+<dialog class="modal socials-panel" id="socials-panel" aria-label="Tous mes réseaux">
+  <div class="panel-head"><span class="label">Mes réseaux</span><button type="button" class="icon-btn round" id="socials-close" aria-label="Fermer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div id="socials-groups"></div>
 </dialog>
 <dialog class="modal gallery" id="gallery" aria-label="Atelier d'écriture"></dialog>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>

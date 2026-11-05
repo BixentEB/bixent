@@ -267,8 +267,7 @@
   }
   getJSON('data/games.json').then(function (d) {
     var list = (d.games || []).filter(function (g) { return g.name; });
-    var grid = $('grid');
-    if (d.enabled === false || !list.length) { grid.classList.add('no-gamer'); return; }
+    if (d.enabled === false || !list.length) return;
     var wrap = $('thumbs'), sec = $('gamer');
     var order = list.map(function (_, i) { return i; }).sort(function () { return Math.random() - .5; });
     var pos = 0, timer = null, every = (d.interval || 45) * 1000, n = Math.min(3, list.length);
@@ -293,7 +292,7 @@
     nextBtn.addEventListener('click', function () { pos = (pos + n) % order.length; show(); start(); });
     sec.hidden = false;
     show(); start();
-  }).catch(function () { $('grid').classList.add('no-gamer'); });
+  }).catch(function () {});
 
   /* ---------- Réseaux, partage, QR code ---------- */
   var ICONS = {
@@ -306,15 +305,44 @@
     bluesky: '<path d="M12 11c-1.5-3-5-6.5-7-6.5-1.5 0-1.5 2-1 4.5.5 2 2.5 3 5 2.5-3 .8-4 2.7-2 4.5 2.5 2.2 4-.5 5-3 1 2.5 2.5 5.2 5 3 2-1.8 1-3.7-2-4.5 2.5.5 4.5-.5 5-2.5.5-2.5.5-4.5-1-4.5-2 0-5.5 3.5-7 6.5z"/>',
     x: '<path d="M4 4l16 16M20 4L4 20"/>'
   };
+  Object.assign(ICONS, {
+    discord: '<path d="M8 6.5C6 7 4.6 7.6 4 8c-1.3 3-2 6-1.6 9 1.6 1.2 3.3 1.8 5 2l1-1.6M16 6.5c2 .5 3.4 1.1 4 1.5 1.3 3 2 6 1.6 9-1.6 1.2-3.3 1.8-5 2l-1-1.6M7 16c3.3 1.6 6.7 1.6 10 0M8 6.5c2.6-.7 5.4-.7 8 0"/><circle cx="9" cy="12.5" r="1.3"/><circle cx="15" cy="12.5" r="1.3"/>',
+    tiktok: '<path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.5 2.6 2.2 4.2 5 4.5"/>',
+    behance: '<path d="M3 7h5a2.5 2.5 0 0 1 0 5H3zM3 12h5.5a2.5 2.5 0 0 1 0 5H3zM14 13.5h7a3.5 3.5 0 1 0-1 2.6M15 7.5h5"/>',
+    deviantart: '<path d="M17 3h-4l-1.5 3H7v5h3l-3 6v4h4l1.5-3H17v-5h-3l3-6z"/>',
+    artstation: '<path d="M2.5 17l2 3.5h11l-2-3.5zM9.5 4.5h4l8 13.5-2 3.5zM8 15.5l3.5-6 3.5 6z"/>',
+    pinterest: '<circle cx="12" cy="12" r="9"/><path d="M11 8.5c3-1 5.5 1 4.5 4s-3.5 3-4 1.5M11.5 11l-2.5 9"/>',
+    reddit: '<ellipse cx="12" cy="14" rx="8" ry="5.5"/><circle cx="18.5" cy="5.5" r="1.5"/><path d="M12 8.5L13.5 4l5 1.5"/><circle cx="9" cy="13.5" r="1"/><circle cx="15" cy="13.5" r="1"/><path d="M9.5 16.5c1.6 1 3.4 1 5 0"/>',
+    steam: '<circle cx="12" cy="12" r="9"/><circle cx="15.5" cy="9.5" r="2.5"/><circle cx="9" cy="15" r="1.8"/><path d="M3.5 13l4 1.6M10.6 14.2l3-2.6"/>',
+    web: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/>'
+  });
+  function socialLink(s, withName) {
+    var a = el('a', { 'class': withName ? 'social-row' : 'icon-btn', href: s.url, rel: 'me noopener', target: '_blank' });
+    if (!withName) { a.setAttribute('aria-label', s.name); a.setAttribute('data-tip', s.name); }
+    a.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' + (ICONS[s.icon] || ICONS.web) + '</svg>';
+    if (withName) a.appendChild(el('span', null, s.name));
+    return a;
+  }
   getJSON('data/socials.json').then(function (d) {
-    var wrap = $('socials');
-    (d.socials || []).forEach(function (s) {
-      if (!s.url) return;
-      var a = el('a', { 'class': 'icon-btn', href: s.url, 'aria-label': s.name, 'data-tip': s.name, rel: 'me noopener', target: '_blank' });
-      a.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' + (ICONS[s.icon] || ICONS.x) + '</svg>';
-      wrap.appendChild(a);
+    var all = (d.socials || []).filter(function (s) { return s.url; });
+    var wrap = $('socials'), more = $('socials-more');
+    all.filter(function (s) { return s.main; }).slice(0, 3).forEach(function (s) { wrap.insertBefore(socialLink(s, false), more); });
+    var groupsEl = $('socials-groups'), names = d.groups || {};
+    Object.keys(names).forEach(function (g) {
+      var items = all.filter(function (s) { return (s.group || 'perso') === g; });
+      if (!items.length) return;
+      var sec = el('div', { 'class': 'panel-group' });
+      sec.appendChild(el('p', { 'class': 'panel-title' }, names[g]));
+      var list = el('div', { 'class': 'panel-list' });
+      items.forEach(function (s) { list.appendChild(socialLink(s, true)); });
+      sec.appendChild(list);
+      groupsEl.appendChild(sec);
     });
   }).catch(function () {});
+  var panel = $('socials-panel');
+  $('socials-more').addEventListener('click', function () { if (panel.showModal) panel.showModal(); });
+  $('socials-close').addEventListener('click', function () { panel.close(); });
+  panel.addEventListener('click', function (e) { if (e.target === panel) panel.close(); });
 
   var qrModal = $('qr-modal');
   $('qr-btn').addEventListener('click', function () { if (qrModal.showModal) qrModal.showModal(); });
@@ -336,7 +364,6 @@
     getJSON('data/works.json').then(function (d) {
       var works = d.works || [];
       if (!works.length) return;
-      $('grid').classList.add('with-atelier');
       $('atelier').hidden = false;
       var covers = $('covers'), dlg = $('gallery');
       works.forEach(function (w) {

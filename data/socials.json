@@ -1,7 +1,11 @@
 {
-  "_aide": "Réseaux affichés dans la bande du bas. Une entrée sans url n'est pas affichée. icon : github, linkedin, instagram, youtube, mastodon, bluesky, x.",
+  "_aide": "Réseaux. Une entrée sans url n'est pas affichée. main: true = icône visible directement dans le bloc (3 au plus) ; toutes les entrées apparaissent dans le panneau « + », rangées par groupe. group : perso, creatif, pro. icon : github, linkedin, instagram, youtube, twitch, mastodon, bluesky, x, discord, tiktok, behance, deviantart, artstation, pinterest, reddit, steam, web.",
+  "groups": { "perso": "Personnel", "creatif": "Créatif", "pro": "Professionnel" },
   "socials": [
-    { "name": "GitHub", "url": "https://github.com/BixentEB", "icon": "github" },
-    { "name": "LinkedIn", "url": "", "icon": "linkedin" }
+    { "name": "GitHub", "url": "https://github.com/BixentEB", "icon": "github", "group": "pro", "main": true },
+    { "name": "LinkedIn", "url": "", "icon": "linkedin", "group": "pro", "main": true },
+    { "name": "Codex Mental", "url": "https://codexmental.com", "icon": "web", "group": "creatif" },
+    { "name": "Laboratoire", "url": "https://lab.codexmental.com", "icon": "web", "group": "creatif" },
+    { "name": "Observatoire", "url": "https://obs.codexmental.com", "icon": "web", "group": "creatif" }
   ]
 }
