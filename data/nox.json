@@ -5,7 +5,7 @@
   "idle": { "img": "img/nox/nox_content.png", "title": "Nox bâille", "line": "Bon… je retourne à ma sieste." },
   "reactions": [
     { "img": "img/nox/nox_happy.png", "title": "Nox est ravie", "line": "Oh, de la visite ! Bienvenue dans l'univers de Codex Mental." },
-    { "img": "img/nox/nox_search.png", "title": "Nox est curieuse", "line": "Tu viens fouiller dans les dossiers de Vincero ?" },
+    { "img": "img/nox/nox_search.png", "title": "Nox est curieuse", "line": "Tu viens fouiller dans les dossiers de Bixent ?" },
     { "img": "img/nox/nox_surprised.png", "title": "Nox sursaute", "line": "Hein ?! J'étais en plein rêve d'étoiles." },
     { "img": "img/nox/nox_starry.png", "title": "Nox est émerveillée", "line": "Tu as vu l'Observatoire ? Il y a des étoiles partout." },
     { "img": "img/nox/nox_wink.png", "title": "Nox fait un clin d'œil", "line": "Psst… la boîte d'à côté cache un chat bizarre." },

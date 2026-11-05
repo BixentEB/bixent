@@ -1,4 +1,4 @@
-# Portail Codex Mental — vincero.codexmental.com
+# Portail Codex Mental — bixent.codexmental.com
 
 Page d'accueil unique (cible du QR code des cartes de visite) qui présente Codex Mental, le Laboratoire et l'Observatoire. HTML, CSS et JavaScript sans dépendance, hébergés sur GitHub Pages.
 
@@ -32,6 +32,6 @@ js/app.js         affiches, Nox, boîte, statistiques, partage
 data/             contenus modifiables
 img/affiches/     affiches (portrait 2:3, .webp)
 img/nox/          visuels de Nox
-img/qr-vincero.svg  QR code vers ce portail
+img/qr-bixent.svg  QR code vers ce portail
 fonts/            polices auto-hébergées (licence OFL)
 ```
