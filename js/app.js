@@ -29,6 +29,17 @@
   /* L'atome reste immobile si l'animation est réduite */
   if (reduced) document.querySelectorAll('svg').forEach(function (s) { if (s.pauseAnimations) s.pauseAnimations(); });
 
+  /* ---------- Lueur des cartes qui suit la souris ---------- */
+  if (window.matchMedia && matchMedia('(hover: hover)').matches) {
+    document.addEventListener('pointermove', function (e) {
+      var c = e.target.closest && e.target.closest('.card');
+      if (!c) return;
+      var b = c.getBoundingClientRect();
+      c.style.setProperty('--mx', (e.clientX - b.left) + 'px');
+      c.style.setProperty('--my', (e.clientY - b.top) + 'px');
+    }, { passive: true });
+  }
+
   /* ---------- Présentation ---------- */
   var bioBtn = $('bio-btn'), bioMore = $('bio-more');
   bioBtn.addEventListener('click', function () {
@@ -50,7 +61,7 @@
     if (cfg.contact && cfg.contact.email) {
       var m = $('mail-btn');
       m.href = 'mailto:' + cfg.contact.email;
-      if (cfg.contact.label) m.textContent = cfg.contact.label;
+      if (cfg.contact.label) { m.setAttribute('aria-label', cfg.contact.label); m.title = cfg.contact.label; m.querySelector('span').textContent = cfg.contact.label; }
     }
     if (cfg.news) initNews(cfg.news);
     initShare(cfg.share || {});
@@ -220,10 +231,10 @@
   boxBtn.addEventListener('click', function () {
     var open = !box.classList.contains('open');
     box.classList.toggle('open', open);
-    boxBtn.textContent = open ? 'Refermer la boîte' : 'Ouvrir la boîte';
+    boxBtn.textContent = open ? 'Refermer' : 'Ouvrir';
     boxLine.textContent = open
-      ? 'Ah. Il a refusé de choisir : éveillé et endormi à la fois.'
-      : 'Un chat est enfermé là-dedans. Dans quel état ? Personne ne le sait.';
+      ? 'Il refuse de choisir : éveillé et endormi à la fois.'
+      : 'Un chat dort là-dedans. Ou pas.';
   });
 
   /* ---------- Réseaux et partage ---------- */
