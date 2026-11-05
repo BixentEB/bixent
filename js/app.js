@@ -271,6 +271,44 @@
     });
   }
 
+  /* ---------- Côté joueur ---------- */
+  var GAME_ICONS = {
+    ocean: '<path d="M3 9c2 0 2-1.5 4.5-1.5S9.5 9 12 9s2-1.5 4.5-1.5S19 9 21 9"/><path d="M3 14c2 0 2-1.5 4.5-1.5S9.5 14 12 14s2-1.5 4.5-1.5S19 14 21 14"/><circle cx="8" cy="19" r="1.2"/><circle cx="12" cy="20.5" r=".8"/><circle cx="15" cy="18.5" r="1.5"/><path d="M12 3v2"/>',
+    space: '<circle cx="12" cy="11" r="7"/><path d="M8 11a4 3.2 0 0 1 8 0v1a4 3.2 0 0 1-8 0z"/><path d="M7 18l-1.5 3M17 18l1.5 3"/><path d="M19.5 4l.5 1.2 1.2.5-1.2.5-.5 1.2-.5-1.2L17.8 5.7l1.2-.5z"/>',
+    planet: '<circle cx="12" cy="12" r="6"/><path d="M6.5 9.5c2 1.5 4 .5 5.5 2s4 1 5.5-.5"/><path d="M8 16c1-1.5 3-1 4-2.5"/><ellipse cx="12" cy="12" rx="10.5" ry="3.2" transform="rotate(-20 12 12)" stroke-opacity=".6"/>',
+    raft: '<path d="M4 15h16l-1.5 3h-13z"/><path d="M12 15V4"/><path d="M12 5l6 7h-6"/><path d="M2 21c2 0 2-1.2 4-1.2s2 1.2 4 1.2 2-1.2 4-1.2 2 1.2 4 1.2 2-1.2 4-1.2"/>',
+    mmo: '<path d="M14.5 3.5L20 3l-.5 5.5L9 19l-4-4z"/><path d="M7 13l4 4M4 20l2.5-2.5"/><path d="M3 9c2-1 3.5-3 4-5 1 2 .5 4-1 5.5M21 15c-1 2-3 3.5-5 4 2 1 4 .5 5.5-1"/>',
+    game: '<rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="15.5" cy="11.5" r=".9"/><circle cx="17.8" cy="13.6" r=".9"/>'
+  };
+  getJSON('data/games.json').then(function (d) {
+    var list = (d.games || []).filter(function (g) { return g.name; });
+    if (d.enabled === false || !list.length) return;
+    var box = $('game'), ico = $('game-ico'), nm = $('game-name'), gn = $('game-genre');
+    var order = list.map(function (_, i) { return i; }).sort(function () { return Math.random() - .5; });
+    var pos = 0, timer = null, every = (d.interval || 45) * 1000;
+    function show() {
+      var g = list[order[pos % order.length]];
+      ico.textContent = '';
+      if (g.image) ico.appendChild(el('img', { src: g.image, alt: '', loading: 'lazy' }));
+      else ico.innerHTML = '<svg viewBox="0 0 24 24">' + (GAME_ICONS[g.icon] || GAME_ICONS.game) + '</svg>';
+      nm.textContent = g.name;
+      gn.textContent = g.genre || '';
+      gn.hidden = !g.genre;
+      box.setAttribute('aria-label', 'Côté joueur : ' + g.name + (list.length > 1 ? ', jeu suivant au clic' : ''));
+      box.classList.remove('swap'); void box.offsetWidth; box.classList.add('swap');
+    }
+    function start() {
+      clearInterval(timer);
+      if (reduced || list.length < 2) return;
+      timer = setInterval(function () { if (!document.hidden) { pos++; show(); } }, every);
+    }
+    box.addEventListener('click', function () {
+      pos++; show(); start();
+    });
+    box.hidden = false;
+    show(); start();
+  }).catch(function () {});
+
   /* ---------- Atelier d'écriture (si activé) ---------- */
   var STATUS = { idee: 'Idée', preparation: 'Préparation', ecriture: 'Écriture', revision: 'Révision', termine: 'Terminé' };
   function initAtelier() {
