@@ -277,6 +277,8 @@
     space: '<circle cx="12" cy="11" r="7"/><path d="M8 11a4 3.2 0 0 1 8 0v1a4 3.2 0 0 1-8 0z"/><path d="M7 18l-1.5 3M17 18l1.5 3"/><path d="M19.5 4l.5 1.2 1.2.5-1.2.5-.5 1.2-.5-1.2L17.8 5.7l1.2-.5z"/>',
     planet: '<circle cx="12" cy="12" r="6"/><path d="M6.5 9.5c2 1.5 4 .5 5.5 2s4 1 5.5-.5"/><path d="M8 16c1-1.5 3-1 4-2.5"/><ellipse cx="12" cy="12" rx="10.5" ry="3.2" transform="rotate(-20 12 12)" stroke-opacity=".6"/>',
     raft: '<path d="M4 15h16l-1.5 3h-13z"/><path d="M12 15V4"/><path d="M12 5l6 7h-6"/><path d="M2 21c2 0 2-1.2 4-1.2s2 1.2 4 1.2 2-1.2 4-1.2 2 1.2 4 1.2 2-1.2 4-1.2"/>',
+    base: '<path d="M3 20h18"/><path d="M5 20v-6l7-5 7 5v6"/><path d="M10 20v-4h4v4"/><path d="M12 9V4l4 1.5L12 7"/><path d="M2 20l3-2M22 20l-3-2" stroke-opacity=".6"/>',
+    bug: '<ellipse cx="12" cy="14" rx="4.5" ry="6"/><circle cx="12" cy="6.5" r="2.5"/><path d="M12 8.5V20"/><path d="M7.5 11L3 9M7.5 15H3M8 18.5L4.5 21M16.5 11L21 9M16.5 15H21M16 18.5l3.5 2.5"/><path d="M10.5 4.5L9 2M13.5 4.5L15 2"/>',
     mmo: '<path d="M14.5 3.5L20 3l-.5 5.5L9 19l-4-4z"/><path d="M7 13l4 4M4 20l2.5-2.5"/><path d="M3 9c2-1 3.5-3 4-5 1 2 .5 4-1 5.5M21 15c-1 2-3 3.5-5 4 2 1 4 .5 5.5-1"/>',
     game: '<rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="15.5" cy="11.5" r=".9"/><circle cx="17.8" cy="13.6" r=".9"/>'
   };

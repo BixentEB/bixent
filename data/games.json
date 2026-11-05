@@ -1,13 +1,14 @@
 {
-  "_aide": "Côté joueur : un jeu à la fois, tiré au hasard, qui change toutes les 'interval' secondes ou au clic. icon : ocean, space, planet, raft, mmo, game (pictogrammes maison). image : facultative, chemin d'une vignette carrée que tu fournis (ex. img/jeux/raft.webp) — elle remplace le pictogramme. genre vide = non affiché. enabled false = bloc masqué.",
+  "_aide": "Côté joueur : un jeu à la fois, tiré au hasard, qui change toutes les 'interval' secondes ou au clic. icon : ocean, space, planet, base, raft, bug, mmo, game (pictogrammes maison). image : facultative, chemin d'une vignette carrée que tu fournis (ex. img/jeux/raft.webp) — elle remplace le pictogramme. genre vide = non affiché. enabled false = bloc masqué.",
   "enabled": true,
   "interval": 45,
   "games": [
     { "name": "Subnautica 2", "genre": "Survie sous-marine", "icon": "ocean", "image": "" },
     { "name": "Breathedge 2", "genre": "Survie spatiale", "icon": "space", "image": "" },
     { "name": "The Planet Crafter", "genre": "Terraformation", "icon": "planet", "image": "" },
-    { "name": "Aethus", "genre": "", "icon": "planet", "image": "" },
+    { "name": "Aethus", "genre": "Survie, base et exploration", "icon": "base", "image": "" },
     { "name": "Raft", "genre": "Survie en pleine mer", "icon": "raft", "image": "" },
+    { "name": "Grounded 2", "genre": "Survie à taille d'insecte", "icon": "bug", "image": "" },
     { "name": "Aion 2", "genre": "MMORPG", "icon": "mmo", "image": "" },
     { "name": "Throne and Liberty", "genre": "MMORPG", "icon": "mmo", "image": "" }
   ]
