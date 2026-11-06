@@ -32,11 +32,7 @@
       <p class="subtitle">L'univers numérique de Bixent</p>
       <div class="bio-row">
         <p class="bio-head">Un esprit curieux, des horizons multiples.</p>
-        <button type="button" class="link-btn" id="bio-btn" aria-expanded="false" aria-controls="bio-more">En savoir plus</button>
-      </div>
-      <div id="bio-more" class="bio-more" hidden>
-        <p>J'aime questionner ce qui nous entoure, explorer ce que nous comprenons encore mal et donner forme aux idées qui traversent mon esprit.</p>
-        <p>Entre écriture, sciences, psychologie, technologies et créations numériques, chaque question peut devenir une réflexion, chaque idée un projet, et chaque exploration une nouvelle découverte.</p>
+        <button type="button" class="link-btn" id="bio-btn" aria-haspopup="dialog" aria-controls="about">En savoir plus</button>
       </div>
       <div class="links" id="links">
         <a class="icon-btn icon-mail" id="mail-btn" href="mailto:contact@codexmental.com" aria-label="M'écrire" data-tip="M'écrire"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></svg></a>
@@ -116,7 +112,7 @@
         <span class="gamer-kicker">Côté gamer</span>
         <span class="gamer-name" id="gamer-name"></span>
       </div>
-      <button type="button" class="icon-btn round gamer-next" id="games-next" aria-label="Jeu suivant" data-tip="Jeu suivant"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+      <button type="button" class="icon-btn round gamer-next" id="games-next" aria-label="Jeu suivant"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
     </section>
   </div>
 
@@ -221,6 +217,57 @@
 <footer class="foot"><span>Codex Mental · Bixent</span></footer>
 </main>
 
+<dialog class="drawer" id="about" aria-labelledby="about-title">
+  <div class="drawer-in">
+    <div class="drawer-head">
+      <span class="label">En savoir plus</span>
+      <button type="button" class="icon-btn round" id="about-close" aria-label="Fermer le panneau"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+
+    <section class="d-sec">
+      <h2 class="d-title" id="about-title">Un esprit curieux, des horizons multiples.</h2>
+      <p>J'aime questionner ce qui nous entoure, explorer ce que nous comprenons encore mal et donner forme aux idées qui traversent mon esprit.</p>
+      <p>Entre écriture, sciences, psychologie, technologies et créations numériques, chaque question peut devenir une réflexion, chaque idée un projet, et chaque exploration une nouvelle découverte.</p>
+      <p class="d-sign">— Bixent</p>
+    </section>
+
+    <section class="d-sec">
+      <h3 class="d-h">Trois univers</h3>
+      <ul class="d-list">
+        <li><b style="color:#8ff6ff">Codex Mental</b><span>Mes articles, mes pensées et l'Atelier, où je lance des idées.</span></li>
+        <li><b style="color:#c9a4ff">Le Laboratoire</b><span>Là où les applis prennent vie : prototypes, logiciels, expériences.</span></li>
+        <li><b style="color:#ffb27a">L'Observatoire</b><span>Une immersion astronomique, avec mes hypothèses sur l'espace.</span></li>
+      </ul>
+    </section>
+
+    <section class="d-sec">
+      <h3 class="d-h">Les chiffres</h3>
+      <ul class="d-list d-compact">
+        <li><b>Sites</b><span>Codex Mental, le Laboratoire, l'Observatoire et ce portail.</span></li>
+        <li><b>Applis &amp; logiciels</b><span>Les projets du Laboratoire, en cours ou en réflexion.</span></li>
+        <li><b>Thèmes d'immersion</b><span>Les décors animés que l'on choisit sur Codex Mental.</span></li>
+        <li><b>Articles</b><span>Les textes publiés sur Codex Mental.</span></li>
+        <li><b>Hypothèses</b><span>Les idées de l'Atelier et les hypothèses de l'Observatoire.</span></li>
+        <li><b>Objets célestes</b><span>Les objets réels recensés dans l'Atlas de l'Observatoire.</span></li>
+      </ul>
+      <p class="d-note">Relevés automatiquement sur les sites quand c'est possible.</p>
+    </section>
+
+    <section class="d-sec">
+      <h3 class="d-h">Côté gamer</h3>
+      <p>Survie, construction de base et exploration, plus quelques MMORPG.</p>
+      <ul class="d-games" id="about-games"></ul>
+    </section>
+
+    <section class="d-sec">
+      <h3 class="d-h">Les petits curieux</h3>
+      <ul class="d-list d-compact">
+        <li><b style="color:#8fb8ff">Nox</b><span>La mascotte de l'univers. Elle dort beaucoup ; un clic la réveille.</span></li>
+        <li><b style="color:#9dff8a">La boîte</b><span>Un clin d'œil au chat de Schrödinger. À ouvrir pour voir…</span></li>
+      </ul>
+    </section>
+  </div>
+</dialog>
 <dialog class="modal" id="qr-modal" aria-label="QR code du portail">
   <img src="img/qr-bixent.svg" alt="QR code vers bixent.codexmental.com" width="260" height="260">
   <p class="mono small muted">bixent.codexmental.com</p>

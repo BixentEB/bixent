@@ -46,13 +46,16 @@
   }
 
   /* ---------- Présentation ---------- */
-  var bioBtn = $('bio-btn'), bioMore = $('bio-more');
-  bioBtn.addEventListener('click', function () {
-    var open = bioMore.hidden;
-    bioMore.hidden = !open;
-    bioBtn.setAttribute('aria-expanded', String(open));
-    bioBtn.textContent = open ? 'Réduire' : 'En savoir plus';
-  });
+  var about = $('about');
+  function closeAbout() {
+    if (!about.open) return;
+    about.classList.add('closing');
+    setTimeout(function () { about.classList.remove('closing'); about.close(); }, reduced ? 0 : 260);
+  }
+  $('bio-btn').addEventListener('click', function () { if (about.showModal) about.showModal(); });
+  $('about-close').addEventListener('click', closeAbout);
+  about.addEventListener('click', function (e) { if (e.target === about) closeAbout(); });
+  about.addEventListener('cancel', function (e) { e.preventDefault(); closeAbout(); });
 
   /* ---------- Réglages ---------- */
   getJSON('data/config.json').then(function (cfg) {
@@ -76,7 +79,6 @@
     var t = $('news-title');
     t.textContent = '';
     if (n.url) t.appendChild(el('a', { href: n.url }, n.title)); else t.textContent = n.title;
-    if (n.date) $('news').setAttribute('title', new Date(n.date + 'T12:00:00').toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }));
     if (n.newUntil && new Date() <= new Date(n.newUntil + 'T23:59:59')) $('news-badge').hidden = false;
   }
 
@@ -88,7 +90,6 @@
       var ok = typeof v === 'number' && v > 0;
       b.textContent = ok ? pad(v) : '··';
       c.classList.toggle('empty', !ok);
-      c.setAttribute('title', ok ? '' : 'Donnée bientôt reliée');
     });
   }
   function initStats(src) {
@@ -291,7 +292,6 @@
       else art.insertAdjacentHTML('beforeend', scene(g.icon));
       nm.textContent = g.name;
       nm.style.animation = 'none'; void nm.offsetWidth; nm.style.animation = '';
-      sec.setAttribute('title', g.name + (g.genre ? ' — ' + g.genre : ''));
     }
     function start() {
       clearInterval(timer);
@@ -300,6 +300,12 @@
     }
     if (list.length < 2) nextBtn.hidden = true;
     nextBtn.addEventListener('click', function () { pos++; show(); start(); });
+    var ul = $('about-games');
+    list.forEach(function (g) {
+      var li = el('li'); li.appendChild(el('b', null, g.name));
+      if (g.genre) li.appendChild(el('span', null, g.genre));
+      ul.appendChild(li);
+    });
     sec.hidden = false;
     show(); start();
   }).catch(function () {});
