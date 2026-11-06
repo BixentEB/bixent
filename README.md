@@ -41,3 +41,7 @@ fonts/            polices auto-hébergées (licence OFL)
 - Bureau : mosaïque de 6 colonnes (rangées de 82 px) à gauche, affiches à droite, puis une dernière rangée de quatre carrés identiques et du bandeau des idées. Les tailles se règlent dans les variables `--row`, `--poster` et `--sq` en haut de `css/style.css`.
 - Tablette : les affiches passent sous la mosaïque, les carrés deviennent quatre colonnes égales.
 - Mobile : tout s'empile, avec les trois univers juste sous l'en-tête.
+
+## Ajouter une affiche
+
+Dépose l'image (portrait 2:3, de préférence en `.webp`) dans `img/affiches/` et envoie-la sur GitHub. Une automatisation (`.github/workflows/affiches.yml`) l'ajoute toute seule au carrousel dans `data/posters.json`, avec une légende tirée du nom du fichier. Tu peux ensuite compléter la citation, la traduction et l'auteur dans ce fichier. Retirer une image la retire aussi du carrousel.
