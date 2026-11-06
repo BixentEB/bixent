@@ -30,6 +30,8 @@
     "labNotApps": [
       "codex-mental",
       "salle-experience"
-    ]
+    ],
+    "labNews": "https://lab.codexmental.com/data/news.json",
+    "labBase": "https://lab.codexmental.com/"
   }
 }

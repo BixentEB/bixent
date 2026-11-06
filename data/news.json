@@ -1,0 +1,6 @@
+{
+  "_aide": "Nouvelles du portail (les plus récentes en premier). Le panneau « Nouveautés » les mélange avec les dernières mises à jour du Laboratoire (lues en direct). url facultative.",
+  "news": [
+    { "date": "2026-11-05", "site": "Portail", "title": "Portail en ligne", "text": "Une seule adresse pour retrouver Codex Mental, le Laboratoire et l'Observatoire.", "url": "" }
+  ]
+}
