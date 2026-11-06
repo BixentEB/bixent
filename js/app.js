@@ -93,7 +93,7 @@
   }
   function initStats(src) {
     getJSON('data/stats.json').then(function (base) {
-      var cached = recall('cx-portail-stats-v2', 6 * 3600 * 1000);
+      var cached = recall('cx-portail-stats-v3', 6 * 3600 * 1000);
       if (cached) { renderStats(Object.assign({}, base, cached)); return; }
       renderStats(base);
       var live = {}, jobs = [];
@@ -105,6 +105,10 @@
       if (src.obsHypotheses) jobs.push(getJSON(src.obsHypotheses).then(function (h) {
         live.ideasObs = (h.hypotheses || []).filter(function (x) { return !x.brouillon && x.statut !== 'exemple'; }).length;
       }));
+      if (src.labProjects) jobs.push(getJSON(src.labProjects).then(function (lab) {
+        var list = Array.isArray(lab) ? lab : (lab.projects || []), skip = src.labNotApps || [];
+        live.apps = list.filter(function (x) { return x && skip.indexOf(x.id) < 0; }).length;
+      }));
       if (src.codexThemes) jobs.push(getJSON(src.codexThemes).then(function (t) {
         var list = Array.isArray(t) ? t : (t.themes || []);
         live.themes = list.filter(function (x) { return x && x.enabled !== false; }).length;
@@ -113,9 +117,10 @@
         var out = {};
         if (live.articles) out.articles = live.articles;
         if (live.themes) out.themes = live.themes;
+        if (live.apps) out.apps = live.apps;
         var ideas = (live.ideasCodex || 0) + (live.ideasObs || 0);
         if (ideas) out.ideas = ideas;
-        if (Object.keys(out).length) { store('cx-portail-stats-v2', out); renderStats(Object.assign({}, base, out)); }
+        if (Object.keys(out).length) { store('cx-portail-stats-v3', out); renderStats(Object.assign({}, base, out)); }
       });
     }).catch(function () {});
   }

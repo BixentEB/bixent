@@ -25,6 +25,11 @@
   "sources": {
     "codexCatalog": "https://codexmental.com/content/catalog.json",
     "obsHypotheses": "https://obs.codexmental.com/hypotheses/index.json",
-    "codexThemes": "https://codexmental.com/themes/themes.json"
+    "codexThemes": "https://codexmental.com/themes/themes.json",
+    "labProjects": "https://lab.codexmental.com/data/projects.json",
+    "labNotApps": [
+      "codex-mental",
+      "salle-experience"
+    ]
   }
 }
