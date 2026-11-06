@@ -10,7 +10,7 @@ Tout passe par les fichiers de `data/` :
 |---|---|
 | `config.json` | Interrupteurs des blocs (`features`), adresse de contact, dernière nouveauté (pastille NEW jusqu'à `newUntil`), lien de partage |
 | `posters.json` | Affiches : image, citation, traduction, auteur ; rotation et pause |
-| `stats.json` | Chiffres de secours ou saisis à la main (`null` = masqué) |
+| `stats.json` | Compteurs : sites, applis et logiciels, thèmes, articles, hypothèses, objets célestes (`null` = « ·· », donnée pas encore reliée) |
 | `socials.json` | Réseaux de la bande du bas (une entrée sans `url` n'apparaît pas) |
 | `nox.json` | Humeurs de Nox et leurs images |
 | `works.json` | Atelier d'écriture : informations **publiques uniquement** |
@@ -21,7 +21,7 @@ Masqué par défaut : `"atelier": false` dans `config.json`. Pour l'afficher, pa
 
 ### Statistiques en direct
 
-Les articles (Codex Mental) et les idées et hypothèses (Atelier de Codex et hypothèses de l'Observatoire) sont recalculés depuis les sites publics, mis en cache 6 h dans le navigateur. En cas d'échec, les valeurs de `stats.json` s'affichent.
+Les articles et les thèmes d'immersion (Codex Mental), ainsi que les hypothèses (Atelier de Codex et hypothèses de l'Observatoire), sont recalculés depuis les sites publics, mis en cache 6 h dans le navigateur. En cas d'échec, les valeurs de `stats.json` s'affichent.
 
 ## Arborescence
 
@@ -36,11 +36,8 @@ img/qr-bixent.svg  QR code vers ce portail
 fonts/            polices auto-hébergées (licence OFL)
 ```
 
-## Ajouter un bloc
+## Disposition
 
-La mosaïque fait 12 colonnes et place les blocs toute seule, dans l'ordre du HTML. Pour en ajouter un, insère une `<section class="card s-4">…</section>` à l'endroit voulu :
-
-- largeur : `s-2`, `s-3`, `s-4`, `s-5`, `s-6`, `s-8` ou `s-12` (en colonnes) ;
-- hauteur double : ajoute `r-2`.
-
-Sur tablette, les blocs passent sur 6 colonnes ; sur mobile, ils s'empilent automatiquement.
+- Bureau : mosaïque de 6 colonnes (rangées de 82 px) à gauche, affiches à droite, puis une dernière rangée de quatre carrés identiques et du bandeau des idées. Les tailles se règlent dans les variables `--row`, `--poster` et `--sq` en haut de `css/style.css`.
+- Tablette : les affiches passent sous la mosaïque, les carrés deviennent quatre colonnes égales.
+- Mobile : tout s'empile, avec les trois univers juste sous l'en-tête.

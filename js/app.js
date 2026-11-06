@@ -76,20 +76,24 @@
     var t = $('news-title');
     t.textContent = '';
     if (n.url) t.appendChild(el('a', { href: n.url }, n.title)); else t.textContent = n.title;
-    var d = n.date ? new Date(n.date + 'T12:00:00') : null;
-    $('news-meta').textContent = d ? d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }) : '';
+    if (n.date) $('news').setAttribute('title', new Date(n.date + 'T12:00:00').toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }));
     if (n.newUntil && new Date() <= new Date(n.newUntil + 'T23:59:59')) $('news-badge').hidden = false;
   }
 
   /* ---------- Compteurs ---------- */
   function pad(n) { return n < 10 ? '0' + n : String(n); }
   function renderStats(s) {
-    if (s.articles != null) $('n-articles').textContent = pad(s.articles);
-    if (s.ideas != null) $('n-ideas').textContent = pad(s.ideas);
+    document.querySelectorAll('#stats .stat').forEach(function (c) {
+      var v = s[c.getAttribute('data-key')], b = c.querySelector('b');
+      var ok = typeof v === 'number' && v > 0;
+      b.textContent = ok ? pad(v) : '··';
+      c.classList.toggle('empty', !ok);
+      c.setAttribute('title', ok ? '' : 'Donnée bientôt reliée');
+    });
   }
   function initStats(src) {
     getJSON('data/stats.json').then(function (base) {
-      var cached = recall('cx-portail-stats', 6 * 3600 * 1000);
+      var cached = recall('cx-portail-stats-v2', 6 * 3600 * 1000);
       if (cached) { renderStats(Object.assign({}, base, cached)); return; }
       renderStats(base);
       var live = {}, jobs = [];
@@ -101,12 +105,17 @@
       if (src.obsHypotheses) jobs.push(getJSON(src.obsHypotheses).then(function (h) {
         live.ideasObs = (h.hypotheses || []).filter(function (x) { return !x.brouillon && x.statut !== 'exemple'; }).length;
       }));
+      if (src.codexThemes) jobs.push(getJSON(src.codexThemes).then(function (t) {
+        var list = Array.isArray(t) ? t : (t.themes || []);
+        live.themes = list.filter(function (x) { return x && x.enabled !== false; }).length;
+      }));
       Promise.allSettled(jobs).then(function () {
         var out = {};
         if (live.articles) out.articles = live.articles;
+        if (live.themes) out.themes = live.themes;
         var ideas = (live.ideasCodex || 0) + (live.ideasObs || 0);
         if (ideas) out.ideas = ideas;
-        if (Object.keys(out).length) { store('cx-portail-stats', out); renderStats(Object.assign({}, base, out)); }
+        if (Object.keys(out).length) { store('cx-portail-stats-v2', out); renderStats(Object.assign({}, base, out)); }
       });
     }).catch(function () {});
   }
@@ -172,7 +181,7 @@
       img.classList.remove('hop', 'breathe'); void img.offsetWidth;
       img.classList.add(name === 'sleeping' ? 'breathe' : 'hop');
       var lab = name === 'sleeping' ? 'Réveiller Nox' : 'Taquiner Nox';
-      btn.setAttribute('aria-label', lab); btn.setAttribute('data-tip', lab);
+      btn.setAttribute('aria-label', lab);
     }
     function react() {
       var r;
@@ -195,13 +204,12 @@
   }).catch(function () {});
 
   /* ---------- Expérience : boîte de Schrödinger ---------- */
-  var box = $('box'), boxBtn = $('box-btn'), boxLine = $('box-line');
-  boxBtn.addEventListener('click', function () {
+  var box = $('box');
+  box.addEventListener('click', function () {
     var open = !box.classList.contains('open');
     box.classList.toggle('open', open);
     var lab = open ? 'Refermer la boîte' : 'Ouvrir la boîte';
-    boxBtn.setAttribute('aria-label', lab); boxBtn.setAttribute('data-tip', lab);
-    boxLine.textContent = open ? 'Il refuse de choisir : éveillé et endormi.' : 'Un chat dort là-dedans. Ou pas.';
+    box.setAttribute('aria-label', lab);
   });
 
   /* ---------- Côté gamer ---------- */
@@ -268,28 +276,25 @@
   getJSON('data/games.json').then(function (d) {
     var list = (d.games || []).filter(function (g) { return g.name; });
     if (d.enabled === false || !list.length) return;
-    var wrap = $('thumbs'), sec = $('gamer');
+    var sec = $('gamer'), art = $('gamer-art'), nm = $('gamer-name'), nextBtn = $('games-next');
     var order = list.map(function (_, i) { return i; }).sort(function () { return Math.random() - .5; });
-    var pos = 0, timer = null, every = (d.interval || 45) * 1000, n = Math.min(3, list.length);
+    var pos = 0, timer = null, every = (d.interval || 45) * 1000;
     function show() {
-      wrap.textContent = '';
-      for (var k = 0; k < n; k++) {
-        var g = list[order[(pos + k) % order.length]];
-        var li = el('li', { 'class': 'thumb', title: g.name + (g.genre ? ' — ' + g.genre : '') });
-        if (g.image) li.appendChild(el('img', { src: g.image, alt: '', loading: 'lazy' }));
-        else li.insertAdjacentHTML('beforeend', scene(g.icon));
-        li.appendChild(el('span', null, g.name));
-        wrap.appendChild(li);
-      }
+      var g = list[order[pos % order.length]];
+      art.textContent = '';
+      if (g.image) art.appendChild(el('img', { src: g.image, alt: '', loading: 'lazy' }));
+      else art.insertAdjacentHTML('beforeend', scene(g.icon));
+      nm.textContent = g.name;
+      nm.style.animation = 'none'; void nm.offsetWidth; nm.style.animation = '';
+      sec.setAttribute('title', g.name + (g.genre ? ' — ' + g.genre : ''));
     }
     function start() {
       clearInterval(timer);
-      if (reduced || list.length <= n) return;
-      timer = setInterval(function () { if (!document.hidden) { pos = (pos + 1) % order.length; show(); } }, every);
+      if (reduced || list.length < 2) return;
+      timer = setInterval(function () { if (!document.hidden) { pos++; show(); } }, every);
     }
-    var nextBtn = $('games-next');
-    if (list.length <= n) nextBtn.hidden = true;
-    nextBtn.addEventListener('click', function () { pos = (pos + n) % order.length; show(); start(); });
+    if (list.length < 2) nextBtn.hidden = true;
+    nextBtn.addEventListener('click', function () { pos++; show(); start(); });
     sec.hidden = false;
     show(); start();
   }).catch(function () {});
@@ -325,7 +330,7 @@
   }
   getJSON('data/socials.json').then(function (d) {
     var all = (d.socials || []).filter(function (s) { return s.url; });
-    var wrap = $('socials'), more = $('socials-more');
+    var wrap = $('links'), more = $('socials-more');
     all.filter(function (s) { return s.main; }).slice(0, 3).forEach(function (s) { wrap.insertBefore(socialLink(s, false), more); });
     var groupsEl = $('socials-groups'), names = d.groups || {};
     Object.keys(names).forEach(function (g) {

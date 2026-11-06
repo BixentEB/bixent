@@ -1,8 +1,10 @@
 {
-  "_aide": "Valeurs de secours et valeurs saisies à la main. Les articles et les idées sont recalculés en direct depuis codexmental.com et obs.codexmental.com quand c'est possible ; sinon ces valeurs s'affichent. null = statistique masquée.",
-  "updated": "2026-11-05",
+  "_aide": "Compteurs du portail. Les articles, les hypothèses (idées de l'Atelier de Codex + hypothèses de l'Observatoire) et les thèmes d'immersion sont recalculés en direct depuis les sites quand c'est possible ; sinon ces valeurs s'affichent. null = donnée pas encore reliée (affichée « ·· »).",
+  "updated": "2026-11-06",
+  "sites": 4,
+  "apps": null,
+  "themes": 9,
   "articles": 22,
   "ideas": 8,
-  "digitalProjects": null,
-  "writingProjects": null
+  "celestial": null
 }
