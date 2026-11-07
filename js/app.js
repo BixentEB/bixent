@@ -203,12 +203,24 @@
       stage.appendChild(im);
       return im;
     });
+    // Image entière (contain) ; si son ratio est à moins de 3 % de celui du cadre, elle le remplit (cover).
+    function fit() {
+      var r = stage.clientWidth / stage.clientHeight;
+      if (!r) return;
+      imgs.forEach(function (im) {
+        if (!im.naturalWidth) return;
+        im.classList.toggle('cover', Math.abs(r / (im.naturalWidth / im.naturalHeight) - 1) < 0.03);
+      });
+    }
+    imgs.forEach(function (im) { im.addEventListener('load', fit); });
+    window.addEventListener('resize', fit);
     var cur = Math.floor(Math.random() * list.length);
     var every = (data.interval || 25) * 1000, pauseFor = (data.pauseAfterClick || 60) * 1000;
     var timer = null, resume = null;
     function show(i) {
       cur = (i + list.length) % list.length;
       imgs.forEach(function (im, k) { im.classList.toggle('on', k === cur); im.setAttribute('aria-hidden', k === cur ? 'false' : 'true'); });
+      stage.style.setProperty('--poster-bg', 'url("' + new URL(list[cur].image, document.baseURI).href + '")');
       status.textContent = (cur + 1) + ' / ' + list.length;
       var next = imgs[(cur + 1) % list.length];
       if (next.loading === 'lazy') next.loading = 'eager';
