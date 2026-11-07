@@ -150,6 +150,12 @@
   /* ---------- Compteurs ---------- */
   function pad(n) { return n < 10 ? '0' + n : String(n); }
   function renderStats(s) {
+    /* Thèmes & immersions : un seul chiffre, le détail est dans l'infobulle */
+    var th = s.themes || 0, im = s.immersions || 0;
+    s = Object.assign({}, s, { themes: th + im });
+    var tip = $('tip-themes');
+    if (tip && th) tip.textContent = th + ' thème' + (th > 1 ? 's' : '') + ' animé' + (th > 1 ? 's' : '') + ' sur Codex Mental' +
+      (im ? ' et ' + im + ' immersion' + (im > 1 ? 's' : '') : ', et bientôt des immersions');
     document.querySelectorAll('#stats .stat').forEach(function (c) {
       var v = s[c.getAttribute('data-key')], b = c.querySelector('b');
       var ok = typeof v === 'number' && v > 0;
