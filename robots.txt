@@ -1,0 +1,49 @@
+# Codex Mental · Portail Bixent — robots.txt
+# Recherche et citation autorisees.
+# Entrainement des IA refuse.
+
+# OpenAI — entrainement
+User-agent: GPTBot
+Disallow: /
+
+# Anthropic — entrainement
+User-agent: ClaudeBot
+Disallow: /
+
+# Google — usages IA et entrainement
+User-agent: Google-Extended
+Disallow: /
+
+# Apple — usages IA
+User-agent: Applebot-Extended
+Disallow: /
+
+# Autres robots de collecte
+User-agent: CCBot
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# Recherche ChatGPT
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Recherche Claude
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+# Autres moteurs de recherche
+User-agent: *
+Allow: /
+
+Sitemap: https://bixent.codexmental.com/sitemap.xml
