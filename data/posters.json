@@ -3,9 +3,41 @@
   "interval": 25,
   "pauseAfterClick": 60,
   "posters": [
-    { "image": "img/affiches/dare-to-dream.webp", "quote": "Dare to dream", "fr": "Ose rêver", "author": "" },
-    { "image": "img/affiches/think-outside-the-box.webp", "quote": "Think outside the box", "fr": "Pense en dehors du cadre", "author": "" },
-    { "image": "img/affiches/stay-curious.webp", "quote": "Stay curious", "fr": "Reste curieux", "author": "" },
-    { "image": "img/affiches/star-stuff.webp", "quote": "We are made of star stuff", "fr": "Nous sommes faits de poussière d'étoiles", "author": "Carl Sagan" }
+    {
+      "image": "img/affiches/dare-to-dream.webp",
+      "quote": "Dare to dream",
+      "fr": "Ose rêver",
+      "author": ""
+    },
+    {
+      "image": "img/affiches/think-outside-the-box.webp",
+      "quote": "Think outside the box",
+      "fr": "Pense en dehors du cadre",
+      "author": ""
+    },
+    {
+      "image": "img/affiches/stay-curious.webp",
+      "quote": "Stay curious",
+      "fr": "Reste curieux",
+      "author": ""
+    },
+    {
+      "image": "img/affiches/star-stuff.webp",
+      "quote": "We are made of star stuff",
+      "fr": "Nous sommes faits de poussière d'étoiles",
+      "author": "Carl Sagan"
+    },
+    {
+      "image": "img/affiches/Affiches-sci-fi-au-coucher-du-soleil.webp",
+      "quote": "Affiches sci fi au coucher du soleil",
+      "fr": "",
+      "author": ""
+    },
+    {
+      "image": "img/affiches/Contemplation-au-delà-des-ruines.webp",
+      "quote": "Contemplation au delà des ruines",
+      "fr": "",
+      "author": ""
+    }
   ]
 }
