@@ -1,15 +1,63 @@
 {
-  "_aide": "Côté joueur : un jeu à la fois, tiré au hasard, qui change toutes les 'interval' secondes ou au clic. icon : ocean, space, planet, base, raft, bug, mmo, game (pictogrammes maison). image : facultative, chemin d'une vignette carrée que tu fournis (ex. img/jeux/raft.webp) — elle remplace le pictogramme. genre vide = non affiché. enabled false = bloc masqué.",
+  "_aide": "Côté joueur : un jeu à la fois, tiré au hasard, qui change toutes les 'interval' secondes ou au clic. icon : ocean, space, planet, base, raft, bug, mmo, game (pictogrammes maison). image : facultative, chemin d'une image (bandeau large, ex. img/jeux/raft.webp) — elle remplace le pictogramme. focus : point de l'image à garder visible quand elle est recadrée en carré (« 30% 50% » = un peu à gauche, centré en hauteur). genre vide = non affiché. enabled false = bloc masqué.",
   "enabled": true,
   "interval": 45,
   "games": [
-    { "name": "Subnautica 2", "genre": "Survie sous-marine", "icon": "ocean", "image": "" },
-    { "name": "Breathedge 2", "genre": "Survie spatiale", "icon": "space", "image": "" },
-    { "name": "The Planet Crafter", "genre": "Terraformation", "icon": "planet", "image": "" },
-    { "name": "Aethus", "genre": "Survie, base et exploration", "icon": "base", "image": "" },
-    { "name": "Raft", "genre": "Survie en pleine mer", "icon": "raft", "image": "" },
-    { "name": "Grounded 2", "genre": "Survie à taille d'insecte", "icon": "bug", "image": "" },
-    { "name": "Aion 2", "genre": "MMORPG", "icon": "mmo", "image": "" },
-    { "name": "Throne and Liberty", "genre": "MMORPG", "icon": "mmo", "image": "" }
+    {
+      "name": "Subnautica 2",
+      "genre": "Survie sous-marine",
+      "icon": "ocean",
+      "image": "img/jeux/subnautica.webp",
+      "focus": "30% 50%"
+    },
+    {
+      "name": "Breathedge 2",
+      "genre": "Survie spatiale",
+      "icon": "space",
+      "image": "img/jeux/breathedge.webp",
+      "focus": "68% 50%"
+    },
+    {
+      "name": "The Planet Crafter",
+      "genre": "Terraformation",
+      "icon": "planet",
+      "image": "img/jeux/planet-crafter.webp",
+      "focus": "28% 50%"
+    },
+    {
+      "name": "Aethus",
+      "genre": "Survie, base et exploration",
+      "icon": "base",
+      "image": "img/jeux/aethus.webp",
+      "focus": "52% 50%"
+    },
+    {
+      "name": "Raft",
+      "genre": "Survie en pleine mer",
+      "icon": "raft",
+      "image": "img/jeux/raft.webp",
+      "focus": "30% 50%"
+    },
+    {
+      "name": "Grounded 2",
+      "genre": "Survie à taille d'insecte",
+      "icon": "bug",
+      "image": "img/jeux/grounded.webp",
+      "focus": "30% 50%"
+    },
+    {
+      "name": "Aion 2",
+      "genre": "MMORPG",
+      "icon": "mmo",
+      "image": "img/jeux/aion.webp",
+      "focus": "24% 50%"
+    },
+    {
+      "name": "Throne and Liberty",
+      "genre": "MMORPG",
+      "icon": "mmo",
+      "image": "img/jeux/throne-and-liberty.webp",
+      "focus": "42% 50%"
+    }
   ]
 }

@@ -406,7 +406,7 @@
     function show() {
       var g = list[order[pos % order.length]];
       art.textContent = '';
-      if (g.image) art.appendChild(el('img', { src: g.image, alt: '', loading: 'lazy' }));
+      if (g.image) art.appendChild(el('img', { src: g.image, alt: '', style: g.focus ? 'object-position:' + g.focus : '' }));
       else art.insertAdjacentHTML('beforeend', scene(g.icon));
       nm.textContent = g.name;
       nm.style.animation = 'none'; void nm.offsetWidth; nm.style.animation = '';
@@ -421,7 +421,7 @@
     FILL.games = function (ul) {
       list.forEach(function (g) {
         var li = el('li'), art = el('span', { 'class': 'd-game-art', 'aria-hidden': 'true' });
-        if (g.image) art.appendChild(el('img', { src: g.image, alt: '', loading: 'lazy' }));
+        if (g.image) art.appendChild(el('img', { src: g.image, alt: '', loading: 'lazy', style: g.focus ? 'object-position:' + g.focus : '' }));
         else art.insertAdjacentHTML('beforeend', scene(g.icon));
         li.appendChild(art);
         var txt = el('span', { 'class': 'd-game-txt' });
