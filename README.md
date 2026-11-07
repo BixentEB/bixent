@@ -27,12 +27,14 @@ Les articles et les thèmes d'immersion (Codex Mental), ainsi que les hypothèse
 
 ```
 index.html        page
+a-propos.html     page « À propos » (chevron de l'en-tête) : texte modifiable directement
 css/style.css     styles (grille Bento, mobile d'abord pour le QR code)
 js/app.js         affiches, Nox, boîte, statistiques, partage
 data/             contenus modifiables
 img/affiches/     affiches (portrait 2:3, .webp)
 img/nox/          visuels de Nox
-img/qr-bixent.svg  QR code vers ce portail
+img/qr-bixent-nuit.svg  QR code stylisé (carte du portail)
+img/qr-bixent.svg       QR code classique, foncé sur clair (secours dans l'agrandissement, impression)
 fonts/            polices auto-hébergées (licence OFL)
 ```
 

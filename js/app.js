@@ -77,8 +77,11 @@
 
   /* Agrandissement d'un visuel (QR code, affiches) */
   var lb = $('lightbox'), lbImg = $('lightbox-img'), lbCap = $('lightbox-cap'), lbDl = $('lightbox-dl');
-  function zoom(src, caption, alt, download) {
+  var lbSecond = $('lightbox-second');
+  function zoom(src, caption, alt, download, second) {
     if (!lb.showModal) return;
+    lbSecond.hidden = !second;
+    if (second) lbSecond.querySelector('img').src = second;
     lbImg.src = src; lbImg.alt = alt || '';
     lbCap.textContent = caption || ''; lbCap.hidden = !caption;
     lbDl.hidden = !download;
@@ -88,7 +91,7 @@
   }
   document.addEventListener('click', function (e) {
     var t = e.target.closest && e.target.closest('[data-zoom]');
-    if (t) zoom(t.getAttribute('data-zoom'), t.getAttribute('data-zoom-caption'), t.getAttribute('data-zoom-alt'), t.getAttribute('data-zoom-download'));
+    if (t) zoom(t.getAttribute('data-zoom'), t.getAttribute('data-zoom-caption'), t.getAttribute('data-zoom-alt'), t.getAttribute('data-zoom-download'), t.getAttribute('data-zoom-second'));
   });
   $('lightbox-close').addEventListener('click', function () { lb.close(); });
   lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
@@ -117,6 +120,8 @@
     t.textContent = '';
     if (n.url) t.appendChild(el('a', { href: n.url }, n.title)); else t.textContent = n.title;
     if (n.newUntil && new Date() <= new Date(n.newUntil + 'T23:59:59')) $('news-badge').hidden = false;
+    var d = n.date ? new Date(n.date + 'T12:00:00').toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }) : '';
+    $('news-meta').textContent = [n.site, d].filter(Boolean).join(' · ');
   }
 
   FILL.news = function (ul) {
@@ -150,6 +155,12 @@
   /* ---------- Compteurs ---------- */
   function pad(n) { return n < 10 ? '0' + n : String(n); }
   function renderStats(s) {
+    /* Thèmes & immersions : un seul chiffre, le détail est dans l'infobulle */
+    var th = s.themes || 0, im = s.immersions || 0;
+    s = Object.assign({}, s, { themes: th + im });
+    var tip = $('tip-themes');
+    if (tip && th) tip.textContent = th + ' thème' + (th > 1 ? 's' : '') + ' animé' + (th > 1 ? 's' : '') + ' sur Codex Mental' +
+      (im ? ' et ' + im + ' immersion' + (im > 1 ? 's' : '') : ', et bientôt des immersions');
     document.querySelectorAll('#stats .stat').forEach(function (c) {
       var v = s[c.getAttribute('data-key')], b = c.querySelector('b');
       var ok = typeof v === 'number' && v > 0;
@@ -203,12 +214,24 @@
       stage.appendChild(im);
       return im;
     });
+    // Image entière (contain) ; si son ratio est à moins de 3 % de celui du cadre, elle le remplit (cover).
+    function fit() {
+      var r = stage.clientWidth / stage.clientHeight;
+      if (!r) return;
+      imgs.forEach(function (im) {
+        if (!im.naturalWidth) return;
+        im.classList.toggle('cover', Math.abs(r / (im.naturalWidth / im.naturalHeight) - 1) < 0.03);
+      });
+    }
+    imgs.forEach(function (im) { im.addEventListener('load', fit); });
+    window.addEventListener('resize', fit);
     var cur = Math.floor(Math.random() * list.length);
     var every = (data.interval || 25) * 1000, pauseFor = (data.pauseAfterClick || 60) * 1000;
     var timer = null, resume = null;
     function show(i) {
       cur = (i + list.length) % list.length;
       imgs.forEach(function (im, k) { im.classList.toggle('on', k === cur); im.setAttribute('aria-hidden', k === cur ? 'false' : 'true'); });
+      stage.style.setProperty('--poster-bg', 'url("' + new URL(list[cur].image, document.baseURI).href + '")');
       status.textContent = (cur + 1) + ' / ' + list.length;
       var next = imgs[(cur + 1) % list.length];
       if (next.loading === 'lazy') next.loading = 'eager';
@@ -235,52 +258,82 @@
     show(cur); start();
   }).catch(function () {});
 
+  /* ---------- Bulles : un temps pour bouger, un temps pour parler ---------- */
+  /* say(carte, bulle, texte, fin) : la carte bouge 1 s, la bulle reste ~2,6 s, puis disparaît. */
+  function speaker(card, bubble) {
+    var timers = [];
+    function clear() { timers.forEach(clearTimeout); timers = []; }
+    return {
+      stop: function () { clear(); bubble.classList.remove('on'); card.classList.remove('speaking'); },
+      say: function (text, done, moveMs) {
+        clear(); bubble.classList.remove('on'); card.classList.remove('speaking');
+        var read = Math.max(2600, Math.min(4200, text.length * 55));
+        timers.push(setTimeout(function () {
+          bubble.textContent = text;
+          if (text) { card.classList.add('speaking'); bubble.classList.add('on'); }
+          timers.push(setTimeout(function () {
+            bubble.classList.remove('on'); card.classList.remove('speaking');
+            timers.push(setTimeout(function () { if (done) done(); }, 700));
+          }, text ? read : 0));
+        }, moveMs == null ? 1000 : moveMs));
+      }
+    };
+  }
+
   /* ---------- Nox ---------- */
   getJSON('data/nox.json').then(function (nox) {
-    var card = $('nox'), btn = $('nox-btn'), img = $('nox-img'), title = $('nox-title'), line = $('nox-line');
-    var timer = null, state = 'sleeping', lastR = -1, preloaded = false;
+    var card = $('nox'), btn = $('nox-btn'), img = $('nox-img'), title = $('nox-title');
+    var talk = speaker(card, $('nox-line'));
+    var state = 'sleeping', lastR = -1, left = 0, preloaded = false;
     function preload() {
       if (preloaded) return; preloaded = true;
       [nox.waking, nox.idle].concat(nox.reactions).forEach(function (s) { var i = new Image(); i.src = s.img; });
     }
-    function set(s, name) {
+    function pose(s, name) {
       state = name;
       img.src = s.img;
       title.textContent = s.title;
-      line.textContent = name === 'sleeping' ? '' : s.line;
       card.classList.toggle('awake', name !== 'sleeping');
       img.classList.remove('hop', 'breathe'); void img.offsetWidth;
       img.classList.add(name === 'sleeping' ? 'breathe' : 'hop');
-      var lab = name === 'sleeping' ? 'Réveiller Nox' : 'Taquiner Nox';
-      btn.setAttribute('aria-label', lab);
+      btn.setAttribute('aria-label', name === 'sleeping' ? 'Réveiller Nox' : 'Taquiner Nox');
     }
+    function sleep() { talk.stop(); pose(nox.sleeping, 'sleeping'); }
+    function yawn() { pose(nox.idle, 'idle'); talk.say(nox.idle.line, function () { setTimeout(sleep, 600); }); }
     function react() {
       var r;
       do { r = Math.floor(Math.random() * nox.reactions.length); } while (nox.reactions.length > 1 && r === lastR);
-      lastR = r;
-      set(nox.reactions[r], 'reaction');
-      clearTimeout(timer);
-      timer = setTimeout(function () {
-        set(nox.idle, 'idle');
-        timer = setTimeout(function () { set(nox.sleeping, 'sleeping'); }, 2200);
-      }, 4200);
+      lastR = r; left--;
+      pose(nox.reactions[r], 'reaction');
+      talk.say(nox.reactions[r].line, left > 0 ? react : yawn);
     }
     btn.addEventListener('pointerenter', preload);
     btn.addEventListener('focus', preload);
     btn.addEventListener('click', function () {
-      preload(); clearTimeout(timer);
-      if (state === 'sleeping') { set(nox.waking, 'waking'); timer = setTimeout(react, 1300); }
-      else react();
+      preload();
+      if (state === 'sleeping') { left = 2; pose(nox.waking, 'waking'); talk.say(nox.waking.line, react); }
+      else { left = Math.max(left, 1); react(); }
     });
   }).catch(function () {});
 
   /* ---------- Expérience : boîte de Schrödinger ---------- */
-  var box = $('box');
+  var box = $('box'), boxTalk = speaker(box, $('box-say'));
+  var OUTCOMES = [
+    { out: 'vivant', line: 'Vivant ! Pour cette fois.' },
+    { out: 'endormi', line: 'Il dort… ou presque. Difficile à dire.' },
+    { out: 'les-deux', line: 'Mort et vivant à la fois, tant qu’on ne regarde pas trop.' },
+    { out: 'vide', line: 'Vide. Le chat est ailleurs… ou partout.' }
+  ], lastOut = -1;
   box.addEventListener('click', function () {
     var open = !box.classList.contains('open');
     box.classList.toggle('open', open);
-    var lab = open ? 'Refermer la boîte' : 'Ouvrir la boîte';
-    box.setAttribute('aria-label', lab);
+    box.setAttribute('aria-label', open ? 'Refermer la boîte' : 'Ouvrir la boîte');
+    if (!open) { boxTalk.stop(); box.removeAttribute('data-out'); return; }
+    var k;
+    do { k = Math.floor(Math.random() * OUTCOMES.length); } while (k === lastOut);
+    lastOut = k;
+    box.setAttribute('data-out', OUTCOMES[k].out);
+    boxTalk.say(OUTCOMES[k].line, null, 700);
   });
 
   /* ---------- Côté gamer ---------- */
@@ -434,11 +487,13 @@
 
   function initShare(sh) {
     var url = sh.url || location.origin + '/';
-    $('share-btn').addEventListener('click', function () {
+    function share() {
       if (navigator.share) { navigator.share({ title: sh.title || document.title, url: url }).catch(function () {}); return; }
       if (navigator.clipboard) navigator.clipboard.writeText(url).then(function () { toast('Lien copié'); }, function () { prompt('Lien du portail :', url); });
       else prompt('Lien du portail :', url);
-    });
+    }
+    $('share-btn').addEventListener('click', share);
+    $('share-sq').addEventListener('click', share);
   }
 
   /* ---------- Atelier d'écriture (si activé) ---------- */
