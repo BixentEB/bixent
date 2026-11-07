@@ -29,9 +29,9 @@
   }
 
   var E = [
-    { c: '#8ff6ff', r: .62, w: .9, inc: 72, node: 20, ph: 0 },
-    { c: '#c9a4ff', r: .9, w: .55, inc: 64, node: 140, ph: 2.2 },
-    { c: '#ffb27a', r: .9, w: .48, inc: 66, node: 260, ph: 4.4 }
+    { c: '#86d9ff', r: .62, w: .9, inc: 72, node: 20, ph: 0 },
+    { c: '#b98bff', r: .9, w: .55, inc: 64, node: 140, ph: 2.2 },
+    { c: '#ffb36b', r: .9, w: .48, inc: 66, node: 260, ph: 4.4 }
   ];
   E.forEach(function (e, i) { e.rgb = rgb(e.c); e.spr = glow(e.c, true); e.halo = glow(e.c, false); e.i = i; e.th = e.ph; e.U = [0, 0, 0]; e.V = [0, 0, 0]; });
   var PROTON = ball('#ff7fae', '#8a1a52'), NEUTRON = ball('#a9c8ff', '#2a3f8f');
@@ -68,15 +68,23 @@
     var c = Math.cos(th) * rad, s = Math.sin(th) * rad;
     return proj(e.U[0] * c + e.V[0] * s, e.U[1] * c + e.V[1] * s, e.U[2] * c + e.V[2] * s);
   }
+  /* Orbite lissée : 180 segments, opacité et épaisseur selon la profondeur
+     (l'arrière s'efface en douceur, l'avant est net), plus un léger halo. */
   function strokeOrbit(e, back) {
-    var started = false, N = 72;
-    g.beginPath();
-    for (var k = 0; k <= N; k++) {
-      var p = orbitPt(e, k / N * TAU, e.r), inn = back ? p[2] > 0 : p[2] <= 0;
-      if (inn) { if (started) g.lineTo(p[0], p[1]); else { g.moveTo(p[0], p[1]); started = true; } } else started = false;
+    var N = 180, prev = orbitPt(e, 0, e.r), px = prev[0], py = prev[1], pz = prev[2], ps = prev[3];
+    g.lineCap = 'round';
+    for (var k = 1; k <= N; k++) {
+      var p = orbitPt(e, k / N * TAU, e.r), z = (pz + p[2]) / 2;
+      if ((z > 0) === back) {
+        var depth = Math.max(0, Math.min(1, .5 - z / (2 * e.r))), s = (ps + p[3]) / 2;
+        var a = .05 + .42 * Math.pow(depth, 1.4);
+        g.strokeStyle = 'rgba(' + e.rgb + ',' + (a * .28).toFixed(3) + ')'; g.lineWidth = 3.6 * s;
+        g.beginPath(); g.moveTo(px, py); g.lineTo(p[0], p[1]); g.stroke();
+        g.strokeStyle = 'rgba(' + e.rgb + ',' + a.toFixed(3) + ')'; g.lineWidth = (.6 + .7 * depth) * s;
+        g.beginPath(); g.moveTo(px, py); g.lineTo(p[0], p[1]); g.stroke();
+      }
+      px = p[0]; py = p[1]; pz = p[2]; ps = p[3];
     }
-    g.strokeStyle = 'rgba(' + e.rgb + ',' + (back ? .14 : .38) + ')';
-    g.lineWidth = back ? 1 : 1.4; g.stroke();
   }
   function drawElectron(e) {
     var A = e.sz > 0 ? .7 : 1, segs = 22, len = 1.5, prev = orbitPt(e, e.th, e.r), px = prev[0], py = prev[1];
