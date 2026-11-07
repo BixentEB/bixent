@@ -1,9 +1,10 @@
 {
-  "_aide": "Compteurs du portail. Articles, hypothèses (idées de l'Atelier de Codex + hypothèses de l'Observatoire), thèmes d'immersion et applis & logiciels (projets du Laboratoire, hors sites listés dans config.json › sources.labNotApps) sont recalculés en direct quand c'est possible ; sinon ces valeurs s'affichent. celestial = objets réels de l'Atlas de l'Observatoire (corps du système solaire, étoiles proches, objets de la galaxie, systèmes à exoplanètes, Groupe local, sans doublons) : à mettre à jour à la main. null = donnée pas encore reliée (affichée « ·· »).",
-  "updated": "2026-11-06",
+  "_aide": "Compteurs du portail. Articles, hypothèses (idées de l'Atelier de Codex + hypothèses de l'Observatoire), thèmes et applis & logiciels (projets du Laboratoire, hors sites listés dans config.json › sources.labNotApps) sont recalculés en direct quand c'est possible ; sinon ces valeurs s'affichent. celestial = objets réels de l'Atlas de l'Observatoire (corps du système solaire, étoiles proches, objets de la galaxie, systèmes à exoplanètes, Groupe local, sans doublons) : à mettre à jour à la main. immersions = expériences de l'espace Immersion de Codex Mental, ajoutées aux thèmes dans le même compteur (à mettre à jour à la main tant que cet espace n'existe pas). null = donnée pas encore reliée (affichée « ·· »).",
+  "updated": "2026-11-07",
   "sites": 4,
   "apps": 10,
   "themes": 9,
+  "immersions": 0,
   "articles": 22,
   "ideas": 8,
   "celestial": 126
