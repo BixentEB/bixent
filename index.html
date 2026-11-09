@@ -32,7 +32,7 @@
       <p class="subtitle">L'univers numérique de Bixent</p>
       <div class="bio-row">
         <p class="bio-head">Un esprit curieux, des horizons multiples.</p>
-        <a class="go go-inline" href="a-propos.html" aria-label="En savoir plus sur Bixent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></a>
+        <button type="button" class="go go-inline" data-panel="about" aria-haspopup="dialog" aria-label="En savoir plus sur Bixent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
       </div>
       <div class="links" id="links">
         <a class="icon-btn icon-mail" id="mail-btn" href="mailto:contact@codexmental.com" aria-label="M'écrire" data-tip="M'écrire"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></svg></a>
@@ -132,7 +132,7 @@
         <span class="gamer-kicker">Côté gamer</span>
         <span class="gamer-name" id="gamer-name"></span>
       </div>
-      <button type="button" class="icon-btn round gamer-next" id="games-next" aria-label="Jeu suivant"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+      <button type="button" class="icon-btn round gamer-next" data-panel="games" aria-haspopup="dialog" aria-label="Voir tous mes jeux"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
     </section>
   </div>
 
@@ -258,6 +258,31 @@
     <div class="drawer-body" id="drawer-body"></div>
   </div>
 </dialog>
+
+<template id="tpl-about" data-label="À propos">
+  <section class="d-sec">
+    <h2 class="d-title">Bixent</h2>
+    <p>J'aime questionner ce qui nous entoure, explorer ce que nous comprenons encore mal et donner forme aux idées qui traversent mon esprit.</p>
+    <p>Entre écriture, sciences, psychologie, technologies et créations numériques, chaque question peut devenir une réflexion, chaque idée un projet, et chaque exploration une nouvelle découverte.</p>
+    <p class="d-sign">— Bixent</p>
+  </section>
+  <section class="d-sec">
+    <h3 class="d-h">Ce que je fais</h3>
+    <ul class="d-list">
+      <li><b style="color:#b98bff">Côté pro</b><span>Je conçois mes propres sites, applications et logiciels, pour le web, Windows et Android, de l'idée jusqu'au code.</span></li>
+      <li><b style="color:#ff6ebe">Côté créatif</b><span>J'écris, je réfléchis à voix haute et j'avance des hypothèses sur l'espace, sans formation scientifique mais avec beaucoup de curiosité.</span></li>
+    </ul>
+  </section>
+  <section class="d-sec">
+    <h3 class="d-h">Mes univers</h3>
+    <ul class="d-uni">
+      <li><a href="https://codexmental.com" style="--c:#86d9ff"><b>Codex Mental</b><span>Écriture &amp; introspection</span></a></li>
+      <li><a href="https://lab.codexmental.com" style="--c:#b98bff"><b>Laboratoire</b><span>Prototypes &amp; expériences</span></a></li>
+      <li><a href="https://obs.codexmental.com" style="--c:#ffb36b"><b>Observatoire</b><span>Astronomie &amp; simulations</span></a></li>
+    </ul>
+  </section>
+  <a class="d-more" href="a-propos.html">Lire la page complète <span aria-hidden="true">→</span></a>
+</template>
 
 <template id="tpl-games" data-label="Côté gamer">
   <section class="d-sec">

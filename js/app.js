@@ -404,24 +404,36 @@
   getJSON('data/games.json').then(function (d) {
     var list = (d.games || []).filter(function (g) { return g.name; });
     if (d.enabled === false || !list.length) return;
-    var sec = $('gamer'), art = $('gamer-art'), nm = $('gamer-name'), nextBtn = $('games-next');
+    var sec = $('gamer'), art = $('gamer-art'), nm = $('gamer-name');
     var order = list.map(function (_, i) { return i; }).sort(function () { return Math.random() - .5; });
-    var pos = 0, timer = null, every = (d.interval || 45) * 1000;
-    function show() {
-      var g = list[order[pos % order.length]];
-      art.textContent = '';
-      if (g.image) art.appendChild(el('img', { src: g.image, alt: '', style: g.focus ? 'object-position:' + g.focus : '' }));
-      else art.insertAdjacentHTML('beforeend', scene(g.icon));
+    var pos = 0, timer = null, every = (d.interval || 31) * 1000, hold = false;
+    // Rotation douce : la nouvelle image apparaît en fondu par-dessus l'ancienne.
+    function show(first) {
+      var g = list[order[pos % order.length]], next;
+      if (g.image) next = el('img', { src: g.image, alt: '', style: g.focus ? 'object-position:' + g.focus : '' });
+      else { next = el('span', { 'class': 'gamer-scene' }); next.innerHTML = scene(g.icon); }
+      if (first || reduced) { art.textContent = ''; art.appendChild(next); next.classList.add('on'); }
+      else {
+        art.appendChild(next);
+        var go = function () {
+          requestAnimationFrame(function () { next.classList.add('on'); });
+          setTimeout(function () { while (art.firstChild !== next) art.removeChild(art.firstChild); }, 1300);
+        };
+        if (next.tagName === 'IMG' && !next.complete) next.addEventListener('load', go, { once: true }); else go();
+      }
       nm.textContent = g.name;
       nm.style.animation = 'none'; void nm.offsetWidth; nm.style.animation = '';
     }
+    // Pas de rotation quand on survole la carte, quand le panneau est ouvert ou quand l'onglet est caché.
+    sec.addEventListener('pointerenter', function () { hold = true; });
+    sec.addEventListener('pointerleave', function () { hold = false; });
     function start() {
       clearInterval(timer);
       if (reduced || list.length < 2) return;
-      timer = setInterval(function () { if (!document.hidden) { pos++; show(); } }, every);
+      timer = setInterval(function () {
+        if (!document.hidden && !hold && !drawer.open) { pos++; show(); }
+      }, every);
     }
-    if (list.length < 2) nextBtn.hidden = true;
-    nextBtn.addEventListener('click', function () { pos++; show(); start(); });
     FILL.games = function (ul) {
       list.forEach(function (g) {
         var li = el('li'), art = el('span', { 'class': 'd-game-art', 'aria-hidden': 'true' });
@@ -436,7 +448,9 @@
       });
     };
     sec.hidden = false;
-    show(); start();
+    show(true);
+    setTimeout(start, 4000 + Math.random() * 6000); // décalé des affiches
+
   }).catch(function () {});
 
   /* ---------- Réseaux, partage, QR code ---------- */

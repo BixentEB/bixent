@@ -1,7 +1,7 @@
 {
-  "_aide": "Côté joueur : un jeu à la fois, tiré au hasard, qui change toutes les 'interval' secondes ou au clic. icon : ocean, space, planet, base, raft, bug, mmo, game (pictogrammes maison). image : facultative, chemin d'une image (bandeau large, ex. img/jeux/raft.webp) — elle remplace le pictogramme. focus : point de l'image à garder visible quand elle est recadrée en carré (« 30% 50% » = un peu à gauche, centré en hauteur). genre vide = non affiché. enabled false = bloc masqué.",
+  "_aide": "Côté joueur : un jeu à la fois, tiré au hasard, qui change toutes les 'interval' secondes ou au clic. icon : ocean, space, planet, base, raft, bug, mmo, game (pictogrammes maison). image : facultative, chemin d'une image (bandeau large, ex. img/jeux/raft.webp) — elle remplace le pictogramme. focus : point de l'image à garder visible quand elle est recadrée en carré (« 30% 50% » = un peu à gauche, centré en hauteur). genre vide = non affiché. enabled false = bloc masqué. interval : secondes entre deux jeux (31 par défaut, décalé des affiches).",
   "enabled": true,
-  "interval": 45,
+  "interval": 31,
   "games": [
     {
       "name": "Subnautica 2",
