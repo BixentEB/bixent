@@ -170,17 +170,21 @@
   }
   function initStats(src) {
     getJSON('data/stats.json').then(function (base) {
-      var cached = recall('cx-portail-stats-v3', 6 * 3600 * 1000);
+      var cached = recall('cx-portail-stats-v4', 6 * 3600 * 1000);
       if (cached) { renderStats(Object.assign({}, base, cached)); return; }
       renderStats(base);
       var live = {}, jobs = [];
       if (src.codexCatalog) jobs.push(getJSON(src.codexCatalog).then(function (cat) {
         var arts = cat.articles || {}, keys = Object.keys(arts);
-        live.articles = keys.filter(function (k) { return arts[k].type === 'article'; }).length;
-        live.ideasCodex = keys.filter(function (k) { return k.indexOf('atelier/') === 0 && k !== 'atelier/intro'; }).length;
+        var pub = function (k) { return !arts[k].hidden && arts[k].status !== 'draft'; };
+        live.articles = keys.filter(function (k) { return arts[k].type === 'article' && pub(k); }).length;
+        live.ideasCodex = keys.filter(function (k) { return k.indexOf('atelier/') === 0 && k !== 'atelier/intro' && pub(k); }).length;
       }));
       if (src.obsHypotheses) jobs.push(getJSON(src.obsHypotheses).then(function (h) {
-        live.ideasObs = (h.hypotheses || []).filter(function (x) { return !x.brouillon && x.statut !== 'exemple'; }).length;
+        // Une fiche qui renvoie vers un article du Codex (champ « lien ») est le même texte : comptée une seule fois, côté Codex.
+        live.ideasObs = (h.hypotheses || []).filter(function (x) {
+          return !x.brouillon && x.statut !== 'exemple' && !(x.lien && /(^|\/\/)codexmental\.com\//.test(x.lien.url || ''));
+        }).length;
       }));
       if (src.labProjects) jobs.push(getJSON(src.labProjects).then(function (lab) {
         var list = Array.isArray(lab) ? lab : (lab.projects || []), skip = src.labNotApps || [];
@@ -197,7 +201,7 @@
         if (live.apps) out.apps = live.apps;
         var ideas = (live.ideasCodex || 0) + (live.ideasObs || 0);
         if (ideas) out.ideas = ideas;
-        if (Object.keys(out).length) { store('cx-portail-stats-v3', out); renderStats(Object.assign({}, base, out)); }
+        if (Object.keys(out).length) { store('cx-portail-stats-v4', out); renderStats(Object.assign({}, base, out)); }
       });
     }).catch(function () {});
   }
